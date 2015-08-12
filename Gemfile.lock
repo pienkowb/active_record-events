@@ -3,6 +3,7 @@ PATH
   specs:
     active_model-events (0.0.1)
       activemodel (>= 3.0)
+      verbs
 
 GEM
   remote: https://rubygems.org/
@@ -99,6 +100,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.44)
+    verbs (2.1.4)
+      activesupport (>= 2.3.4)
+      i18n
 
 PLATFORMS
   ruby

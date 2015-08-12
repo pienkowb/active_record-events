@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'activemodel', '>= 3.0'
+  s.add_dependency 'verbs'
 
   s.add_development_dependency 'rails'
   s.add_development_dependency 'rspec-rails'
