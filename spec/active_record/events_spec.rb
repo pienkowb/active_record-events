@@ -3,6 +3,11 @@ require 'spec_helper'
 RSpec.describe ActiveRecord::Events do
   before(:each) { @task = Task.create! }
 
+  it 'checks a timestamp' do
+    @task.complete
+    expect(@task.completed?).to be_true
+  end
+
   it 'records a timestamp' do
     @task.complete
     expect(@task.completed_at).to eq(Time.now)

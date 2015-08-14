@@ -17,6 +17,10 @@ module ActiveRecord::Events
         past_participle = _module.past_participle(name)
         field_name = "#{past_participle}_at"
 
+        define_method("#{past_participle}?") do
+          send(field_name).present?
+        end
+
         define_method(name) do
           touch(field_name) if send(field_name).blank?
         end
