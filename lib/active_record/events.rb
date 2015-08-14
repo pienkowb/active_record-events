@@ -1,7 +1,7 @@
-require 'active_model'
+require 'active_record'
 require 'verbs'
 
-module ActiveModel::Events
+module ActiveRecord::Events
   extend ActiveSupport::Concern
 
   def self.past_participle(infinitive)
@@ -11,7 +11,7 @@ module ActiveModel::Events
 
   module ClassMethods
     def handles(*event_names)
-      _module = ActiveModel::Events
+      _module = ActiveRecord::Events
 
       event_names.each do |name|
         past_participle = _module.past_participle(name)
@@ -29,4 +29,4 @@ module ActiveModel::Events
   end
 end
 
-ActiveRecord::Base.send :include, ActiveModel::Events
+ActiveRecord::Base.send :include, ActiveRecord::Events

@@ -9,7 +9,7 @@ require 'sprockets/railtie'
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require 'active_model/events'
+require 'active_record/events'
 
 module Dummy
   class Application < Rails::Application

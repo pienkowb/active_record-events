@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    active_model-events (0.0.1)
-      activemodel (>= 3.0)
+    active_record-events (0.0.1)
+      activerecord (>= 3.0)
       verbs
 
 GEM
@@ -109,7 +109,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model-events!
+  active_record-events!
   jquery-rails
   rails
   rspec-rails

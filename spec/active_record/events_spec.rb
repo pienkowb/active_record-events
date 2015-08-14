@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe ActiveModel::Events do
+RSpec.describe ActiveRecord::Events do
   before(:each) { @task = Task.create! }
 
   it 'records a timestamp' do
