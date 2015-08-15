@@ -1,15 +1,13 @@
-require 'active_record'
+require 'active_support'
 require 'verbs'
 
-module ActiveRecord::Events
-  extend ActiveSupport::Concern
+module ActiveRecord
+  module Events
+    def self.past_participle(infinitive)
+      options = { tense: :past, aspect: :perfective }
+      infinitive.verb.conjugate(options)
+    end
 
-  def self.past_participle(infinitive)
-    options = { tense: :past, aspect: :perfective }
-    infinitive.verb.conjugate(options)
-  end
-
-  module ClassMethods
     def handles(*event_names)
       _module = ActiveRecord::Events
 
@@ -41,4 +39,6 @@ module ActiveRecord::Events
   end
 end
 
-ActiveRecord::Base.send :include, ActiveRecord::Events
+ActiveSupport.on_load(:active_record) do
+  extend ActiveRecord::Events
+end
