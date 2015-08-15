@@ -26,4 +26,9 @@ RSpec.describe ActiveRecord::Events do
 
     expect(@task.completed_at).to eq(Time.now)
   end
+
+  it 'defines scope methods' do
+    expect(Task.not_completed).to include(@task)
+    expect(Task.completed).not_to include(@task)
+  end
 end

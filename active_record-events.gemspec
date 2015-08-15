@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile']
   s.test_files = Dir['spec/**/*']
 
+  s.required_ruby_version = '>= 1.9.3'
+
   s.add_dependency 'activerecord', '>= 3.0'
   s.add_dependency 'verbs'
 

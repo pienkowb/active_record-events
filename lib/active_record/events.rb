@@ -28,6 +28,14 @@ module ActiveRecord::Events
         define_method("#{name}!") do
           touch(field_name)
         end
+
+        define_singleton_method(past_participle) do
+          where(arel_table[field_name].not_eq(nil))
+        end
+
+        define_singleton_method("not_#{past_participle}") do
+          where(arel_table[field_name].eq(nil))
+        end
       end
     end
   end
