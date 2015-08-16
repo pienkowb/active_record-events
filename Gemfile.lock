@@ -39,6 +39,8 @@ GEM
     builder (3.0.4)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     hike (1.2.3)
     i18n (0.7.0)
     journey (1.0.4)
@@ -110,6 +112,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_record-events!
+  factory_girl
   jquery-rails
   rails
   rspec-rails
