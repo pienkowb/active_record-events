@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.author      = 'Bartosz Pieńkowski'
   s.email       = 'pienkowb@gmail.com'
   s.homepage    = 'https://github.com/pienkowb/active_record-events'
-  s.summary     = 'TODO: Summary of ActiveRecord::Events.'
-  s.description = 'TODO: Description of ActiveRecord::Events.'
+  s.summary     = 'Manage timestamps in ActiveRecord models'
+  s.description = 'An ActiveRecord extension providing convenience methods for timestamp management.'
 
-  s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile']
+  s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
   s.required_ruby_version = '>= 1.9.3'
