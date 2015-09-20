@@ -16,11 +16,11 @@ module ActiveRecord
         field_name = "#{past_participle}_at"
 
         define_method("#{past_participle}?") do
-          send(field_name).present?
+          self[field_name].present?
         end
 
         define_method(name) do
-          touch(field_name) if send(field_name).blank?
+          touch(field_name) if self[field_name].blank?
         end
 
         define_method("#{name}!") do
