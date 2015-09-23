@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/pienkowb/active_record-events'
   s.summary     = 'Manage timestamps in ActiveRecord models'
   s.description = 'An ActiveRecord extension providing convenience methods for timestamp management.'
+  s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
@@ -24,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rails'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'test-unit'
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'timecop'
 end
