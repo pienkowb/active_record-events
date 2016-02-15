@@ -40,7 +40,7 @@ class Task < ActiveRecord::Base
   end
 
   def complete!
-    touch :completed_at
+    touch(:completed_at)
   end
 end
 ```
@@ -65,8 +65,8 @@ handles :complete, :archive
 In addition, the macro defines two scope methods – one for retrieving objects with a recorded timestamp and one for those without it, for example:
 
 ```ruby
-scope :not_completed, -> { where completed_at: nil }
-scope :completed, -> { where.not completed_at: nil }
+scope :not_completed, -> { where(completed_at: nil) }
+scope :completed, -> { where.not(completed_at: nil) }
 ```
 
 ## See also
