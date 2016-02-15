@@ -1,9 +1,15 @@
 language: ruby
+
 rvm:
   - 1.9
   - 2.0
   - 2.1
   - 2.2
   - 2.3.0
+
+gemfile:
+  - gemfiles/3.2.gemfile
+  - gemfiles/4.2.gemfile
+
 before_script:
   - bundle exec rake db:migrate

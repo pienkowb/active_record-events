@@ -1,5 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'active_record'
+
 Bundler.require(:default, ENV['RAILS_ENV'])
 
 # Load application files
