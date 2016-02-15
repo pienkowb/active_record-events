@@ -1,0 +1,6 @@
+db:
+  migrate: spec/dummy/db/migrate
+  schema: spec/dummy/db/schema.rb
+
+config:
+  database: spec/dummy/config/database.yml

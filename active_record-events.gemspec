@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = 'An ActiveRecord extension providing convenience methods for timestamp management.'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files = Dir['lib/**/*'] + %w(MIT-LICENSE Rakefile README.md)
   s.test_files = Dir['spec/**/*']
 
   s.required_ruby_version = '>= 1.9.3'
@@ -22,10 +22,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'activerecord', '>= 3.0'
   s.add_dependency 'verbs'
 
-  s.add_development_dependency 'rails'
+  s.add_development_dependency 'standalone_migrations'
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'test-unit'
+  s.add_development_dependency 'rspec'
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'timecop'
 end

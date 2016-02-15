@@ -4,5 +4,6 @@ rvm:
   - 2.0
   - 2.1
   - 2.2
+  - 2.3.0
 before_script:
   - bundle exec rake db:migrate
