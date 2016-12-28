@@ -8,32 +8,34 @@ module ActiveRecord
       infinitive.verb.conjugate(options)
     end
 
-    def handles(*event_names)
+    def has_events(*names)
+      names.each { |n| has_event(n) }
+    end
+
+    def has_event(name)
       _module = ActiveRecord::Events
 
-      event_names.each do |name|
-        past_participle = _module.past_participle(name)
-        field_name = "#{past_participle}_at"
+      past_participle = _module.past_participle(name)
+      field_name = "#{past_participle}_at"
 
-        define_method("#{past_participle}?") do
-          self[field_name].present?
-        end
+      define_method("#{past_participle}?") do
+        self[field_name].present?
+      end
 
-        define_method(name) do
-          touch(field_name) if self[field_name].blank?
-        end
+      define_method(name) do
+        touch(field_name) if self[field_name].blank?
+      end
 
-        define_method("#{name}!") do
-          touch(field_name)
-        end
+      define_method("#{name}!") do
+        touch(field_name)
+      end
 
-        define_singleton_method(past_participle) do
-          where(arel_table[field_name].not_eq(nil))
-        end
+      define_singleton_method(past_participle) do
+        where(arel_table[field_name].not_eq(nil))
+      end
 
-        define_singleton_method("not_#{past_participle}") do
-          where(arel_table[field_name].eq(nil))
-        end
+      define_singleton_method("not_#{past_participle}") do
+        where(arel_table[field_name].eq(nil))
       end
     end
   end

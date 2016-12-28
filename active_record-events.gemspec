@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
 
   s.add_dependency 'activerecord', '>= 3.0'
-  s.add_dependency 'verbs'
+  s.add_dependency 'verbs', '~> 2.1'
 
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'standalone_migrations'

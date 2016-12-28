@@ -1,3 +1,3 @@
 class Task < ActiveRecord::Base
-  handles :complete
+  has_event :complete
 end

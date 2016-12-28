@@ -49,7 +49,7 @@ Instead of defining these three methods explicitly, you can use a macro provided
 
 ```ruby
 class Task < ActiveRecord::Base
-  handles :complete
+  has_event :complete
 end
 ```
 
@@ -57,7 +57,7 @@ This approach is very efficient when more than one field has to be handled that 
 In such a case, many lines of code can be replaced with an expressive one-liner.
 
 ```ruby
-handles :complete, :archive
+has_events :complete, :archive
 ```
 
 ### Scopes

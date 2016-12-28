@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    active_record-events (0.1.2)
+    active_record-events (1.0.0)
       activerecord (>= 3.0)
-      verbs
+      verbs (~> 2.1)
 
 GEM
   remote: https://rubygems.org/
