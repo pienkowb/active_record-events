@@ -1,41 +1,34 @@
 require 'active_support'
-require 'verbs'
+require 'active_record/events/naming'
 
 module ActiveRecord
   module Events
-    def self.past_participle(infinitive)
-      options = { tense: :past, aspect: :perfective }
-      infinitive.verb.conjugate(options)
-    end
-
     def has_events(*names)
-      names.each { |n| has_event(n) }
+      options = names.extract_options!
+      names.each { |n| has_event(n, options) }
     end
 
-    def has_event(name)
-      _module = ActiveRecord::Events
+    def has_event(name, options = {})
+      naming = Naming.new(name, options)
 
-      past_participle = _module.past_participle(name)
-      field_name = "#{past_participle}_at"
-
-      define_method("#{past_participle}?") do
-        self[field_name].present?
+      define_method("#{naming.predicate}?") do
+        self[naming.field].present?
       end
 
-      define_method(name) do
-        touch(field_name) if self[field_name].blank?
+      define_method(naming.action) do
+        touch(naming.field) if self[naming.field].blank?
       end
 
-      define_method("#{name}!") do
-        touch(field_name)
+      define_method("#{naming.action}!") do
+        touch(naming.field)
       end
 
-      define_singleton_method(past_participle) do
-        where(arel_table[field_name].not_eq(nil))
+      define_singleton_method(naming.scope) do
+        where(arel_table[naming.field].not_eq(nil))
       end
 
-      define_singleton_method("not_#{past_participle}") do
-        where(arel_table[field_name].eq(nil))
+      define_singleton_method(naming.inverse_scope) do
+        where(arel_table[naming.field].eq(nil))
       end
     end
   end

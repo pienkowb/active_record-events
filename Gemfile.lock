@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    active_record-events (1.0.0)
+    active_record-events (1.1.0)
       activerecord (>= 3.0)
       verbs (~> 2.1)
 

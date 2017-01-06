@@ -28,4 +28,11 @@ RSpec.describe ActiveRecord::Events do
     expect(Task.not_completed).to include(task)
     expect(Task.completed).not_to include(task)
   end
+
+  let(:user) { create(:user) }
+
+  it 'handles a subject' do
+    user.confirm_email
+    expect(user.email_confirmed?).to be(true)
+  end
 end
