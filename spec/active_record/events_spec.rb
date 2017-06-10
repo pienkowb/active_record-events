@@ -31,7 +31,7 @@ RSpec.describe ActiveRecord::Events do
 
   let(:user) { create(:user) }
 
-  it 'handles a subject' do
+  it 'handles an object' do
     user.confirm_email
     expect(user.email_confirmed?).to be(true)
   end

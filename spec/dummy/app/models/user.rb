@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  has_event :confirm, subject: :email
+  has_event :confirm, object: :email
 end

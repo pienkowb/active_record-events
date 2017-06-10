@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe ActiveRecord::Events::Naming do
-  context 'without a subject' do
+  context 'without an object' do
     subject { described_class.new(:complete) }
 
     it 'generates a field name' do
@@ -25,8 +25,8 @@ RSpec.describe ActiveRecord::Events::Naming do
     end
   end
 
-  context 'with a subject' do
-    subject { described_class.new(:confirm, subject: :email) }
+  context 'with an object' do
+    subject { described_class.new(:confirm, object: :email) }
 
     it 'generates a field name' do
       expect(subject.field).to eq('email_confirmed_at')

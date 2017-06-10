@@ -69,14 +69,14 @@ scope :not_completed, -> { where(completed_at: nil) }
 scope :completed, -> { where.not(completed_at: nil) }
 ```
 
-### Subject
+### Object
 
 There are events which do not relate to a model itself but to one of its attributes – take the `User` model with the `email_confirmed_at` field as an example.
-In order to keep method names grammatically correct, you can specify a subject using the `subject` option.
+In order to keep method names grammatically correct, you can specify an object using the `object` option.
 
 ```ruby
 class User < ActiveRecord::Base
-  has_event :confirm, subject: :email
+  has_event :confirm, object: :email
 end
 ```
 

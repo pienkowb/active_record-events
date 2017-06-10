@@ -5,34 +5,33 @@ module ActiveRecord
     class Naming
       def initialize(infinitive, options = {})
         @infinitive = infinitive
-        @subject = options[:subject].presence
+        @object = options[:object].presence
       end
 
       def field
-        [@subject, past_participle, 'at'].compact.join('_')
+        [@object, past_participle, 'at'].compact.join('_')
       end
 
       def predicate
-        [@subject, past_participle].compact.join('_')
+        [@object, past_participle].compact.join('_')
       end
 
       def action
-        [@infinitive, @subject].compact.join('_')
+        [@infinitive, @object].compact.join('_')
       end
 
       def scope
-        [@subject, past_participle].compact.join('_')
+        [@object, past_participle].compact.join('_')
       end
 
       def inverse_scope
-        [@subject, 'not', past_participle].compact.join('_')
+        [@object, 'not', past_participle].compact.join('_')
       end
 
       private
 
       def past_participle
-        options = { tense: :past, aspect: :perfective }
-        @infinitive.verb.conjugate(options)
+        @infinitive.verb.conjugate(tense: :past, aspect: :perfective)
       end
     end
   end
