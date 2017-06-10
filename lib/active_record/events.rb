@@ -15,6 +15,10 @@ module ActiveRecord
         self[naming.field].present?
       end
 
+      define_method("#{naming.inverse_predicate}?") do
+        self[naming.field].blank?
+      end
+
       define_method(naming.action) do
         touch(naming.field) if self[naming.field].blank?
       end

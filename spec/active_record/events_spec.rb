@@ -7,6 +7,8 @@ RSpec.describe ActiveRecord::Events do
     task.complete
 
     expect(task).to be_completed
+    expect(task).not_to be_not_completed
+
     expect(task.completed_at).to eq(Time.now)
   end
 
@@ -33,6 +35,8 @@ RSpec.describe ActiveRecord::Events do
 
   it 'handles an object' do
     user.confirm_email
+
     expect(user.email_confirmed?).to be(true)
+    expect(user.email_not_confirmed?).to be(false)
   end
 end

@@ -31,12 +31,16 @@ Consider a `Task` model with a `completed_at` field and the following methods:
 
 ```ruby
 class Task < ActiveRecord::Base
+  def not_completed?
+    !completed?
+  end
+
   def completed?
     completed_at.present?
   end
 
   def complete
-    complete! unless completed?
+    complete! if not_completed?
   end
 
   def complete!
@@ -45,7 +49,7 @@ class Task < ActiveRecord::Base
 end
 ```
 
-Instead of defining these three methods explicitly, you can use a macro provided by the gem.
+Instead of defining these four methods explicitly, you can use a macro provided by the gem.
 
 ```ruby
 class Task < ActiveRecord::Base
@@ -80,7 +84,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-This will generate `email_confirmed?`, `confirm_email` and `confirm_email!` methods.
+This will generate `email_not_confirmed?`, `email_confirmed?`, `confirm_email` and `confirm_email!` methods.
 
 ## See also
 

@@ -16,6 +16,10 @@ module ActiveRecord
         [@object, past_participle].compact.join('_')
       end
 
+      def inverse_predicate
+        [@object, 'not', past_participle].compact.join('_')
+      end
+
       def action
         [@infinitive, @object].compact.join('_')
       end
