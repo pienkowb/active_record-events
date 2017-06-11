@@ -6,8 +6,8 @@ RSpec.describe ActiveRecord::Events do
   it 'records a timestamp' do
     task.complete
 
-    expect(task).to be_completed
-    expect(task).not_to be_not_completed
+    expect(task.completed?).to eq(true)
+    expect(task.not_completed?).to eq(false)
 
     expect(task.completed_at).to eq(Time.now)
   end
