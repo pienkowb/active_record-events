@@ -36,7 +36,7 @@ RSpec.describe ActiveRecord::Events do
   it 'handles an object' do
     user.confirm_email
 
-    expect(user.email_confirmed?).to be(true)
-    expect(user.email_not_confirmed?).to be(false)
+    expect(user.email_confirmed?).to eq(true)
+    expect(user.email_not_confirmed?).to eq(false)
   end
 end
