@@ -46,10 +46,14 @@ class Task < ActiveRecord::Base
   def complete!
     touch(:completed_at)
   end
+
+  def self.complete_all
+    touch_all(:completed_at)
+  end
 end
 ```
 
-Instead of defining these four methods explicitly, you can use a macro provided by the gem.
+Instead of defining these five methods explicitly, you can use a macro provided by the gem.
 
 ```ruby
 class Task < ActiveRecord::Base
@@ -84,7 +88,18 @@ class User < ActiveRecord::Base
 end
 ```
 
-This will generate `email_not_confirmed?`, `email_confirmed?`, `confirm_email` and `confirm_email!` methods.
+This will generate the following methods:
+
+- `email_not_confirmed?`
+- `email_confirmed?`
+- `confirm_email`
+- `confirm_email!`
+- `confirm_all_emails` (class method)
+
+As well as these two scopes:
+
+- `email_confirmed`
+- `email_not_confirmed`
 
 ## See also
 

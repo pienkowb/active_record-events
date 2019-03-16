@@ -20,6 +20,10 @@ RSpec.describe ActiveRecord::Events::Naming do
       expect(subject.action).to eq('complete')
     end
 
+    it 'generates a collective action name' do
+      expect(subject.collective_action).to eq('complete_all')
+    end
+
     it 'generates a scope name' do
       expect(subject.scope).to eq('completed')
     end
@@ -46,6 +50,10 @@ RSpec.describe ActiveRecord::Events::Naming do
 
     it 'generates an action name' do
       expect(subject.action).to eq('confirm_email')
+    end
+
+    it 'generates a collective action name' do
+      expect(subject.collective_action).to eq('confirm_all_emails')
     end
 
     it 'generates a scope name' do

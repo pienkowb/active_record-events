@@ -24,6 +24,10 @@ module ActiveRecord
         [@infinitive, @object].compact.join('_')
       end
 
+      def collective_action
+        [@infinitive, 'all', pluralized_object].compact.join('_')
+      end
+
       def scope
         [@object, past_participle].compact.join('_')
       end
@@ -36,6 +40,10 @@ module ActiveRecord
 
       def past_participle
         @infinitive.verb.conjugate(tense: :past, aspect: :perfective)
+      end
+
+      def pluralized_object
+        @object.to_s.pluralize if @object.present?
       end
     end
   end

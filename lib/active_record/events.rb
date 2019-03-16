@@ -27,6 +27,10 @@ module ActiveRecord
         touch(naming.field)
       end
 
+      define_singleton_method(naming.collective_action) do
+        update_all(naming.field => Time.current)
+      end
+
       define_singleton_method(naming.scope) do
         where(arel_table[naming.field].not_eq(nil))
       end

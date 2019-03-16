@@ -9,7 +9,11 @@ appraise 'rails-4.2' do
   gem 'nokogiri', '~> 1.6.7'
 end
 
-appraise 'rails-5.0' do
-  gem 'activerecord', '~> 5.0.1'
-  gem 'standalone_migrations', '~> 5.0.0'
+appraise 'rails-5.2' do
+  gem 'activerecord', '~> 5.2.2'
+  gem 'standalone_migrations', '~> 5.2.7'
+end
+
+appraise 'rails-6.0' do
+  gem 'activerecord', '~> 6.0.0.beta3'
 end
