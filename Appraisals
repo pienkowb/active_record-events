@@ -16,4 +16,5 @@ end
 
 appraise 'rails-6.0' do
   gem 'activerecord', '~> 6.0.0.beta3'
+  gem 'standalone_migrations', '~> 5.2.7'
 end
