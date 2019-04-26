@@ -105,7 +105,7 @@ As well as these two scopes:
 
 After declaring event on model you will need to create coresponding migration. Migration for example presented in **Object** section above would look like this:
 
-```
+```ruby
 class AddEmailConfirmedAtToUsers < ActiveRecord::Migration[5.2]
   def change
     add_column :users, :email_confirmed_at, :datetime
