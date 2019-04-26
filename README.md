@@ -101,6 +101,18 @@ As well as these two scopes:
 - `email_confirmed`
 - `email_not_confirmed`
 
+### Migration
+
+After declaring event on model you will need to create coresponding migration. Migration for example presented in **Object** section above would look like this:
+
+```
+class AddEmailConfirmedAtToUsers < ActiveRecord::Migration[5.2]
+  def change
+    add_column :users, :email_confirmed_at, :datetime
+  end
+end
+```
+
 ## See also
 
 - [ActiveRecord::Enum](http://api.rubyonrails.org/classes/ActiveRecord/Enum.html)
