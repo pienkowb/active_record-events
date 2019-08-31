@@ -4,6 +4,6 @@ source "https://rubygems.org"
 
 gem "activerecord", "~> 4.2.5"
 gem "standalone_migrations", "~> 4.0.2"
-gem "nokogiri", "~> 1.6.7"
+gem "nokogiri", "~> 1.6.8"
 
 gemspec :path => "../"
