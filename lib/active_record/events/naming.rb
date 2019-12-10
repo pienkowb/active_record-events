@@ -6,10 +6,15 @@ module ActiveRecord
       def initialize(infinitive, options = {})
         @infinitive = infinitive
         @object = options[:object].presence
+        @field_type = options[:field_type]
       end
 
       def field
-        [@object, past_participle, 'at'].compact.join('_')
+        if @field_type == :date
+          [@object, past_participle, 'on'].compact.join('_')
+        else
+          [@object, past_participle, 'at'].compact.join('_')
+        end
       end
 
       def predicate

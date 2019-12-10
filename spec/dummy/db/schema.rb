@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_01_03_215307) do
+ActiveRecord::Schema.define(version: 2019_12_10_310354) do
+
+  create_table "books", force: :cascade do |t|
+    t.date "borrowed_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.datetime "completed_at"

@@ -66,4 +66,44 @@ RSpec.describe ActiveRecord::Events do
       expect(User.email_not_confirmed).to include(user)
     end
   end
+
+  context 'when event has a date field type' do
+    let!(:book) { create(:book) }
+
+    it 'records a timestamp' do
+      book.borrow
+
+      expect(book.borrowed?).to eq(true)
+      expect(book.not_borrowed?).to eq(false)
+
+      expect(book.borrowed_on).to eq(Date.current)
+    end
+
+    it 'preserves a timestamp' do
+      book = create(:book, borrowed_on: 3.days.ago)
+      book.borrow
+
+      expect(book.borrowed_on).to eq(3.days.ago.to_date)
+    end
+
+    it 'updates a timestamp' do
+      book = create(:book, borrowed_on: 3.days.ago)
+      book.borrow!
+
+      expect(book.borrowed_on).to eq(Date.current)
+    end
+
+    it 'records multiple timestamps' do
+      Book.borrow_all
+      expect(book.reload.borrowed?).to eq(true)
+    end
+
+    it 'defines a scope' do
+      expect(Book.borrowed).not_to include(book)
+    end
+
+    it 'defines an inverse scope' do
+      expect(Book.not_borrowed).to include(book)
+    end
+  end
 end
