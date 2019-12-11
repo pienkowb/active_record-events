@@ -10,11 +10,8 @@ module ActiveRecord
       end
 
       def field
-        if @field_type == :date
-          [@object, past_participle, 'on'].compact.join('_')
-        else
-          [@object, past_participle, 'at'].compact.join('_')
-        end
+        suffix = @field_type == :date ? 'on' : 'at'
+        [@object, past_participle, suffix].compact.join('_')
       end
 
       def predicate

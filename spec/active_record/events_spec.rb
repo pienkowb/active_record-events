@@ -67,7 +67,7 @@ RSpec.describe ActiveRecord::Events do
     end
   end
 
-  context 'when event has a date field type' do
+  context 'with a date field' do
     let!(:book) { create(:book) }
 
     it 'records a timestamp' do
