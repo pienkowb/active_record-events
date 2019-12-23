@@ -11,21 +11,23 @@ module ActiveRecord
     def has_event(name, options = {})
       naming = Naming.new(name, options)
 
-      define_method("#{naming.predicate}?") do
-        self[naming.field].present?
-      end
+      include(Module.new do
+        define_method("#{naming.predicate}?") do
+          self[naming.field].present?
+        end
 
-      define_method("#{naming.inverse_predicate}?") do
-        self[naming.field].blank?
-      end
+        define_method("#{naming.inverse_predicate}?") do
+          self[naming.field].blank?
+        end
 
-      define_method(naming.action) do
-        touch(naming.field) if self[naming.field].blank?
-      end
+        define_method(naming.action) do
+          touch(naming.field) if self[naming.field].blank?
+        end
 
-      define_method("#{naming.action}!") do
-        touch(naming.field)
-      end
+        define_method("#{naming.action}!") do
+          touch(naming.field)
+        end
+      end)
 
       define_singleton_method(naming.collective_action) do
         update_all(naming.field => Time.current)
