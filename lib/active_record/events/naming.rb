@@ -6,7 +6,7 @@ module ActiveRecord
       def initialize(infinitive, options = {})
         @infinitive = infinitive
         @object = options[:object].presence
-        @field_type = options[:field_type]&.to_sym
+        @field_type = options[:field_type].try(:to_sym)
       end
 
       def field
