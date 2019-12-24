@@ -77,6 +77,14 @@ scope :not_completed, -> { where(completed_at: nil) }
 scope :completed, -> { where.not(completed_at: nil) }
 ```
 
+### Date field
+
+In case of date fields, which by convention have names ending with `_on` instead of `_at` (e.g. `delivered_on`), the `field_type` option needs to be passed to the macro:
+
+```ruby
+has_event :deliver, field_type: :date
+```
+
 ### Object
 
 There are events which do not relate to a model itself but to one of its attributes – take the `User` model with the `email_confirmed_at` field as an example.
