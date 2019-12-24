@@ -76,21 +76,21 @@ RSpec.describe ActiveRecord::Events do
       expect(book.borrowed?).to eq(true)
       expect(book.not_borrowed?).to eq(false)
 
-      expect(book.borrowed_on).to eq(Date.current)
+      expect(book.reload.borrowed_on).to eq(Date.current)
     end
 
     it 'preserves a timestamp' do
       book = create(:book, borrowed_on: 3.days.ago)
       book.borrow
 
-      expect(book.borrowed_on).to eq(3.days.ago.to_date)
+      expect(book.reload.borrowed_on).to eq(3.days.ago.to_date)
     end
 
     it 'updates a timestamp' do
       book = create(:book, borrowed_on: 3.days.ago)
       book.borrow!
 
-      expect(book.borrowed_on).to eq(Date.current)
+      expect(book.reload.borrowed_on).to eq(Date.current)
     end
 
     it 'records multiple timestamps' do
