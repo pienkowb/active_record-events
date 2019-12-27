@@ -1,0 +1,28 @@
+AllCops:
+  TargetRubyVersion: 1.9
+  DisplayCopNames: true
+  Exclude:
+    - spec/dummy/db/schema.rb
+
+Style/Documentation:
+  Enabled: false
+
+Naming/PredicateName:
+  Exclude:
+    - lib/active_record/events.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - lib/active_record/events.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - lib/active_record/events.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Metrics/LineLength:
+  Exclude:
+    - active_record-events.gemspec
