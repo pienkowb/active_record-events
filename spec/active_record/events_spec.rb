@@ -41,6 +41,11 @@ RSpec.describe ActiveRecord::Events do
     it 'defines an inverse scope' do
       expect(Task.not_completed).to include(task)
     end
+
+    it 'allows overriding methods' do
+      task.complete!
+      expect(task.completed?).to eq(true)
+    end
   end
 
   context 'with an object' do
