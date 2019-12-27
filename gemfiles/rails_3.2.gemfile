@@ -2,7 +2,8 @@
 
 source "https://rubygems.org"
 
+gem "pry"
 gem "activerecord", "~> 3.2.22"
 gem "standalone_migrations", "~> 2.1.5"
 
-gemspec :path => "../"
+gemspec path: "../"
