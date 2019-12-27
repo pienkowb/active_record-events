@@ -1,4 +1,4 @@
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 require 'active_record/events/version'
 
@@ -20,10 +20,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activerecord', '>= 3.0'
   spec.add_dependency 'verbs', '~> 2.1'
 
-  spec.add_development_dependency 'appraisal'
-  spec.add_development_dependency 'standalone_migrations'
+  spec.add_development_dependency 'appraisal', '~> 2.2'
+  spec.add_development_dependency 'standalone_migrations', '~> 5.2'
   spec.add_development_dependency 'sqlite3', '~> 1.3.13'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'factory_girl'
-  spec.add_development_dependency 'timecop'
+  spec.add_development_dependency 'rspec', '~> 3.9'
+  spec.add_development_dependency 'factory_girl', '~> 4.8.1'
+  spec.add_development_dependency 'timecop', '~> 0.9'
 end
