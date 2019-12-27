@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 1.9
+  TargetRubyVersion: 2.0
   DisplayCopNames: true
   Exclude:
     - spec/dummy/db/schema.rb
@@ -7,7 +7,7 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-Style/PredicateName:
+Naming/PredicateName:
   Exclude:
     - lib/active_record/events.rb
 
@@ -18,6 +18,10 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Exclude:
     - lib/active_record/events.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
 
 Metrics/LineLength:
   Exclude:
