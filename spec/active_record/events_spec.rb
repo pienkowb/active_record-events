@@ -42,17 +42,9 @@ RSpec.describe ActiveRecord::Events do
       expect(Task.not_completed).to include(task)
     end
 
-    it 'allows overriding methods defined by the gem' do
-      task.class.class_eval do
-        def complete
-          super
-        end
-      end
-
-      task.complete
-
+    it 'allows overriding methods' do
+      task.complete!
       expect(task.completed?).to eq(true)
-      expect(task.not_completed?).to eq(false)
     end
   end
 
