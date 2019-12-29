@@ -8,6 +8,6 @@ class Task < ActiveRecord::Base
 
   def self.complete_all
     super
-    logger.info("All tasks have been completed")
+    logger.info('All tasks have been completed')
   end
 end
