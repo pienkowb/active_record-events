@@ -29,17 +29,19 @@ module ActiveRecord
         end
       end)
 
-      define_singleton_method(naming.collective_action) do
-        update_all(naming.field => Time.current)
-      end
+      extend(Module.new do
+        define_method(naming.collective_action) do
+          update_all(naming.field => Time.current)
+        end
 
-      define_singleton_method(naming.scope) do
-        where(arel_table[naming.field].not_eq(nil))
-      end
+        define_method(naming.scope) do
+          where(arel_table[naming.field].not_eq(nil))
+        end
 
-      define_singleton_method(naming.inverse_scope) do
-        where(arel_table[naming.field].eq(nil))
-      end
+        define_method(naming.inverse_scope) do
+          where(arel_table[naming.field].eq(nil))
+        end
+      end)
     end
   end
 end

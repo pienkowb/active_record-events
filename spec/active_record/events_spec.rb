@@ -1,114 +1,61 @@
 require 'spec_helper'
 
 RSpec.describe ActiveRecord::Events do
-  around(:each) { |e| Timecop.freeze { e.run } }
+  around { |e| Timecop.freeze { e.run } }
 
-  context 'without an object' do
-    let!(:task) { create(:task) }
+  let!(:task) { create(:task) }
 
-    it 'records a timestamp' do
-      task.complete
+  it 'records a timestamp' do
+    task.complete
 
-      expect(task.completed?).to eq(true)
-      expect(task.not_completed?).to eq(false)
+    expect(task.completed?).to eq(true)
+    expect(task.not_completed?).to eq(false)
 
-      expect(task.completed_at).to eq(Time.current)
-    end
-
-    it 'preserves a timestamp' do
-      task = create(:task, completed_at: 3.days.ago)
-      task.complete
-
-      expect(task.completed_at).to eq(3.days.ago)
-    end
-
-    it 'updates a timestamp' do
-      task = create(:task, completed_at: 3.days.ago)
-      task.complete!
-
-      expect(task.completed_at).to eq(Time.current)
-    end
-
-    it 'records multiple timestamps' do
-      Task.complete_all
-      expect(task.reload.completed?).to eq(true)
-    end
-
-    it 'defines a scope' do
-      expect(Task.completed).not_to include(task)
-    end
-
-    it 'defines an inverse scope' do
-      expect(Task.not_completed).to include(task)
-    end
-
-    it 'allows overriding methods' do
-      task.complete!
-      expect(task.completed?).to eq(true)
-    end
+    expect(task.completed_at).to eq(Time.current)
   end
 
-  context 'with an object' do
-    let!(:user) { create(:user) }
+  it 'preserves a timestamp' do
+    task = create(:task, completed_at: 3.days.ago)
 
-    it 'records a timestamp' do
-      user.confirm_email
+    task.complete
 
-      expect(user.email_confirmed?).to eq(true)
-      expect(user.email_not_confirmed?).to eq(false)
-    end
-
-    it 'records multiple timestamps' do
-      User.confirm_all_emails
-      expect(user.reload.email_confirmed?).to eq(true)
-    end
-
-    it 'defines a scope' do
-      expect(User.email_confirmed).not_to include(user)
-    end
-
-    it 'defines an inverse scope' do
-      expect(User.email_not_confirmed).to include(user)
-    end
+    expect(task.completed_at).to eq(3.days.ago)
   end
 
-  context 'with a date field' do
-    let!(:book) { create(:book) }
+  it 'updates a timestamp' do
+    task = create(:task, completed_at: 3.days.ago)
 
-    it 'records a timestamp' do
-      book.borrow
+    task.complete!
 
-      expect(book.borrowed?).to eq(true)
-      expect(book.not_borrowed?).to eq(false)
+    expect(task.completed_at).to eq(Time.current)
+  end
 
-      expect(book.reload.borrowed_on).to eq(Date.current)
-    end
+  it 'records multiple timestamps at once' do
+    Task.complete_all
+    expect(task.reload).to be_completed
+  end
 
-    it 'preserves a timestamp' do
-      book = create(:book, borrowed_on: 3.days.ago)
-      book.borrow
+  it 'defines a scope' do
+    expect(Task.completed).not_to include(task)
+  end
 
-      expect(book.reload.borrowed_on).to eq(3.days.ago.to_date)
-    end
+  it 'defines an inverse scope' do
+    expect(Task.not_completed).to include(task)
+  end
 
-    it 'updates a timestamp' do
-      book = create(:book, borrowed_on: 3.days.ago)
-      book.borrow!
+  it 'allows overriding instance methods' do
+    expect(ActiveRecord::Base.logger).to receive(:info)
 
-      expect(book.reload.borrowed_on).to eq(Date.current)
-    end
+    task.complete!
 
-    it 'records multiple timestamps' do
-      Book.borrow_all
-      expect(book.reload.borrowed?).to eq(true)
-    end
+    expect(task).to be_completed
+  end
 
-    it 'defines a scope' do
-      expect(Book.borrowed).not_to include(book)
-    end
+  it 'allows overriding class methods' do
+    expect(ActiveRecord::Base.logger).to receive(:info)
 
-    it 'defines an inverse scope' do
-      expect(Book.not_borrowed).to include(book)
-    end
+    Task.complete_all
+
+    expect(task.reload).to be_completed
   end
 end

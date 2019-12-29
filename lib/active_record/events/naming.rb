@@ -1,4 +1,4 @@
-require 'verbs'
+require 'active_record/events/verbs'
 
 module ActiveRecord
   module Events

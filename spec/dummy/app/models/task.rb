@@ -3,7 +3,11 @@ class Task < ActiveRecord::Base
 
   def complete!
     super
-    logger = Logger.new(STDOUT)
     logger.info("Task #{id} has been completed")
+  end
+
+  def self.complete_all
+    super
+    logger.info("All tasks have been completed")
   end
 end

@@ -115,6 +115,7 @@ GEM
     verbs (2.1.4)
       activesupport (>= 2.3.4)
       i18n
+    zonebie (0.6.1)
 
 PLATFORMS
   ruby
@@ -129,6 +130,7 @@ DEPENDENCIES
   sqlite3 (~> 1.3.13)
   standalone_migrations (~> 5.2)
   timecop (~> 0.9)
+  zonebie (~> 0.6)
 
 BUNDLED WITH
    1.17.3
