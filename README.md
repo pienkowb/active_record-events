@@ -129,6 +129,12 @@ class Task < ActiveRecord::Base
 end
 ```
 
+## Contributors
+
+- [Bartosz Pieńkowski](https://github.com/pienkowb)
+- [Tomasz Skupiński](https://github.com/tskupinski)
+- [Oskar Janusz](https://github.com/oskaror)
+
 ## See also
 
 - [ActiveRecord::Enum](https://api.rubyonrails.org/classes/ActiveRecord/Enum.html)
