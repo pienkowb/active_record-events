@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   has_event :complete
+  has_event :archive, skip_scopes: true
 
   def complete!
     super

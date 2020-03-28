@@ -53,7 +53,7 @@ class Task < ActiveRecord::Base
 end
 ```
 
-Instead of defining these five methods explicitly, you can use a macro provided by the gem.
+Instead of defining all of these methods manually, you can use a macro provided by the gem.
 
 ```ruby
 class Task < ActiveRecord::Base
@@ -61,18 +61,30 @@ class Task < ActiveRecord::Base
 end
 ```
 
-This approach is very efficient when more than one field has to be handled that way.
-In such a case, many lines of code can be replaced with an expressive one-liner.
+As a result, the aforementioned methods will be generated automatically.
 
-```ruby
-has_events :complete, :archive
-```
+### Scopes
 
 In addition, the macro defines two scope methods – one for retrieving objects with a recorded timestamp and one for those without it, for example:
 
 ```ruby
 scope :not_completed, -> { where(completed_at: nil) }
 scope :completed, -> { where.not(completed_at: nil) }
+```
+
+The inclusion of scope methods can be omitted by passing the `skip_scopes` flag.
+
+```ruby
+has_event :complete, skip_scopes: true
+```
+
+### Multiple events
+
+This approach is very efficient when more than one field has to be handled that way.
+In such a case, many lines of code can be replaced with an expressive one-liner.
+
+```ruby
+has_events :complete, :archive
 ```
 
 ### Setting a field type

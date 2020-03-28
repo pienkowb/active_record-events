@@ -38,12 +38,14 @@ module ActiveRecord
           end
         end
 
-        define_method(naming.scope) do
-          where(arel_table[naming.field].not_eq(nil))
-        end
+        unless options[:skip_scopes]
+          define_method(naming.scope) do
+            where(arel_table[naming.field].not_eq(nil))
+          end
 
-        define_method(naming.inverse_scope) do
-          where(arel_table[naming.field].eq(nil))
+          define_method(naming.inverse_scope) do
+            where(arel_table[naming.field].eq(nil))
+          end
         end
       end)
     end
