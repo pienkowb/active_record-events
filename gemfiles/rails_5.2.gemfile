@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 gem "pry"
-gem "activerecord", "~> 5.2.2"
+gem "activerecord", "~> 5.2.4"
 gem "standalone_migrations", "~> 5.2.7"
 
 gemspec path: "../"
