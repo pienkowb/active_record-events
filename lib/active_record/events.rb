@@ -31,7 +31,11 @@ module ActiveRecord
 
       extend(Module.new do
         define_method(naming.collective_action) do
-          update_all(naming.field => Time.current)
+          if respond_to?(:touch_all)
+            touch_all(naming.field)
+          else
+            update_all(naming.field => Time.current)
+          end
         end
 
         define_method(naming.scope) do
