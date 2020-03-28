@@ -12,20 +12,20 @@ module ActiveRecord
       naming = Naming.new(name, options)
 
       include(Module.new do
-        define_method("#{naming.predicate}?") do
+        define_method(naming.predicate) do
           self[naming.field].present?
         end
 
-        define_method("#{naming.inverse_predicate}?") do
-          self[naming.field].blank?
+        define_method(naming.inverse_predicate) do
+          !__send__(naming.predicate)
         end
 
         define_method(naming.action) do
-          touch(naming.field) if self[naming.field].blank?
+          touch(naming.field)
         end
 
-        define_method("#{naming.action}!") do
-          touch(naming.field)
+        define_method(naming.safe_action) do
+          __send__(naming.action) if __send__(naming.inverse_predicate)
         end
       end)
 

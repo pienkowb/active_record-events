@@ -10,42 +10,54 @@ module ActiveRecord
       end
 
       def field
-        suffix = @field_type == :date ? 'on' : 'at'
-        [@object, past_participle, suffix].compact.join('_')
+        suffix = field_type == :date ? 'on' : 'at'
+        concatenate(object, past_participle, suffix)
       end
 
       def predicate
-        [@object, past_participle].compact.join('_')
+        concatenate(object, past_participle) + '?'
       end
 
       def inverse_predicate
-        [@object, 'not', past_participle].compact.join('_')
+        concatenate(object, 'not', past_participle) + '?'
       end
 
       def action
-        [@infinitive, @object].compact.join('_')
+        concatenate(infinitive, object) + '!'
+      end
+
+      def safe_action
+        concatenate(infinitive, object)
       end
 
       def collective_action
-        [@infinitive, 'all', pluralized_object].compact.join('_')
+        concatenate(infinitive, 'all', plural_object)
       end
 
       def scope
-        [@object, past_participle].compact.join('_')
+        concatenate(object, past_participle)
       end
 
       def inverse_scope
-        [@object, 'not', past_participle].compact.join('_')
+        concatenate(object, 'not', past_participle)
       end
 
       private
 
-      def past_participle
-        @infinitive.verb.conjugate(tense: :past, aspect: :perfective)
+      attr_reader :infinitive
+      attr_reader :object
+      attr_reader :field_type
+
+      def concatenate(*parts)
+        parts.compact.join('_')
       end
 
-      def pluralized_object
-        @object.to_s.pluralize if @object.present?
+      def past_participle
+        infinitive.verb.conjugate(tense: :past, aspect: :perfective)
+      end
+
+      def plural_object
+        object.to_s.pluralize if object.present?
       end
     end
   end

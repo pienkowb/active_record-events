@@ -8,15 +8,19 @@ RSpec.describe ActiveRecord::Events::Naming do
   end
 
   it 'generates a predicate name' do
-    expect(subject.predicate).to eq('completed')
+    expect(subject.predicate).to eq('completed?')
   end
 
   it 'generates an inverse predicate name' do
-    expect(subject.inverse_predicate).to eq('not_completed')
+    expect(subject.inverse_predicate).to eq('not_completed?')
   end
 
   it 'generates an action name' do
-    expect(subject.action).to eq('complete')
+    expect(subject.action).to eq('complete!')
+  end
+
+  it 'generates a safe action name' do
+    expect(subject.safe_action).to eq('complete')
   end
 
   it 'generates a collective action name' do
@@ -39,15 +43,19 @@ RSpec.describe ActiveRecord::Events::Naming do
     end
 
     it 'generates a predicate name' do
-      expect(subject.predicate).to eq('email_confirmed')
+      expect(subject.predicate).to eq('email_confirmed?')
     end
 
     it 'generates an inverse predicate name' do
-      expect(subject.inverse_predicate).to eq('email_not_confirmed')
+      expect(subject.inverse_predicate).to eq('email_not_confirmed?')
     end
 
     it 'generates an action name' do
-      expect(subject.action).to eq('confirm_email')
+      expect(subject.action).to eq('confirm_email!')
+    end
+
+    it 'generates a safe action name' do
+      expect(subject.safe_action).to eq('confirm_email')
     end
 
     it 'generates a collective action name' do
