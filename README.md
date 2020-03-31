@@ -61,7 +61,7 @@ class Task < ActiveRecord::Base
 end
 ```
 
-As a result, the aforementioned methods will be generated automatically.
+As a result, the methods will be generated automatically.
 
 ### Scopes
 
@@ -80,7 +80,7 @@ has_event :complete, skip_scopes: true
 
 ### Multiple events
 
-This approach is very efficient when more than one field has to be handled that way.
+Using the macro is efficient when more than one field has to be handled that way.
 In such a case, many lines of code can be replaced with an expressive one-liner.
 
 ```ruby
