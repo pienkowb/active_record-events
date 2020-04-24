@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'appraisal', '~> 2.2'
   spec.add_development_dependency 'factory_girl', '~> 4.8.1'
+  spec.add_development_dependency 'generator_spec', '~> 0.9'
   spec.add_development_dependency 'rspec', '~> 3.9'
   spec.add_development_dependency 'rubocop', '~> 0.50.0'
   spec.add_development_dependency 'sqlite3', '~> 1.3.13'

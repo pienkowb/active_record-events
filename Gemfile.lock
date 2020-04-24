@@ -46,6 +46,9 @@ GEM
     erubi (1.9.0)
     factory_girl (4.8.1)
       activesupport (>= 3.0.0)
+    generator_spec (0.9.4)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     loofah (2.4.0)
@@ -124,6 +127,7 @@ DEPENDENCIES
   active_record-events!
   appraisal (~> 2.2)
   factory_girl (~> 4.8.1)
+  generator_spec (~> 0.9)
   pry
   rspec (~> 3.9)
   rubocop (~> 0.50.0)

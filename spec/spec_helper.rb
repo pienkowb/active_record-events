@@ -3,6 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../dummy/config/environment.rb', __FILE__)
 
 require 'factory_girl'
+require 'generator_spec'
 require 'timecop'
 require 'zonebie/rspec'
 
@@ -13,4 +14,5 @@ RSpec.configure do |config|
   config.order = :random
 
   config.include FactoryGirl::Syntax::Methods
+  config.include GeneratorHelpers, type: :generator
 end
