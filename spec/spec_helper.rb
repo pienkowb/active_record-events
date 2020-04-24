@@ -1,13 +1,13 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require File.expand_path('../dummy/config/environment.rb', __FILE__)
+require File.expand_path('dummy/config/environment.rb', __dir__)
 
 require 'factory_girl'
 require 'generator_spec'
 require 'timecop'
 require 'zonebie/rspec'
 
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
   config.color = true
