@@ -26,11 +26,12 @@ require 'standalone_migrations'
 
 StandaloneMigrations::Tasks.load_tasks
 
-if Gem::Version.new(ActiveRecord::VERSION::STRING) >= Gem::Version.new('5.1.0')
-  ACTIVE_RECORD_MIGRATION_CLASS = ActiveRecord::Migration[4.2]
-else
-  ACTIVE_RECORD_MIGRATION_CLASS = ActiveRecord::Migration
-end
+ACTIVE_RECORD_MIGRATION_CLASS =
+  if ActiveRecord::VERSION::MAJOR >= 5
+    ActiveRecord::Migration[4.2]
+  else
+    ActiveRecord::Migration
+  end
 
 Bundler::GemHelper.install_tasks
 

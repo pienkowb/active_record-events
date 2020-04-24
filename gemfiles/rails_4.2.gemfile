@@ -2,7 +2,6 @@
 
 source "https://rubygems.org"
 
-gem "pry"
 gem "activerecord", "~> 4.2.11"
 gem "standalone_migrations", "~> 4.0.2"
 gem "nokogiri", "~> 1.6.8"
