@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = 'An ActiveRecord extension providing convenience methods for timestamp management.'
   spec.license = 'MIT'
 
-  spec.files = Dir['lib/**/*'] + %w[MIT-LICENSE Rakefile README.md]
+  spec.files = Dir['lib/**/*'] + %w[LICENSE Rakefile README.md]
   spec.test_files = Dir['spec/**/*']
 
   spec.required_ruby_version = '>= 2.0.0'

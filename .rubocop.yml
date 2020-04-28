@@ -7,6 +7,9 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Layout/AlignHash:
+  Enabled: false
+
 Naming/PredicateName:
   Exclude:
     - lib/active_record/events.rb

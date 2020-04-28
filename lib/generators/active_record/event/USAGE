@@ -1,0 +1,15 @@
+Description:
+    Generates a database migration and updates the model file (if it exists).
+    Pass the model name, either CamelCased or under_scored, and the event name
+    as an infinitive.
+
+Examples:
+    `bin/rails generate active_record:event task complete`
+
+        Generates a migration adding a `completed_at` column to the `tasks`
+        table and updates the Task model.
+
+    `bin/rails generate active_record:event user confirm --object=email`
+
+        Generates a migration adding an `email_confirmed_at` column to the
+        `users` table and updates the User model.

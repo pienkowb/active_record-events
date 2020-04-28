@@ -24,8 +24,11 @@ $ gem install active_record-events
 
 ## Usage
 
-Recording a timestamp in order to mark that an event occurred to an object is a common practice when dealing with ActiveRecord models – `created_at` and `updated_at` fields handled by ActiveRecord itself are a good example of such approach.
+Recording a timestamp in order to mark that an event occurred to an object is a common practice when dealing with ActiveRecord models.
+A good example of such an approach is how ActiveRecord handles the `created_at` and `updated_at` fields.
 This gem allows you to manage custom timestamp fields in the exact same manner.
+
+### Example
 
 Consider a `Task` model with a `completed_at` field and the following methods:
 
@@ -53,7 +56,7 @@ class Task < ActiveRecord::Base
 end
 ```
 
-Instead of defining all of these methods manually, you can use a macro provided by the gem.
+Instead of defining all of these methods by hand, you can use the `has_event` macro provided by the gem.
 
 ```ruby
 class Task < ActiveRecord::Base
@@ -62,6 +65,9 @@ end
 ```
 
 As a result, the methods will be generated automatically.
+
+*It's important to note that the `completed_at` column has to already exist in the database.*
+*Consider [using the generator](#using-a-rails-generator) to create a necessary migration.*
 
 ### Scopes
 
@@ -118,6 +124,43 @@ As well as these two scopes:
 
 - `email_confirmed`
 - `email_not_confirmed`
+
+### Using a Rails generator
+
+If you want to quickly add a new event, you can make use of a Rails generator provided by the gem:
+
+```
+$ rails generate active_record:event task complete
+```
+
+It will create a necessary migration and insert a `has_event` statement into the model class.
+
+```ruby
+# db/migrate/XXX_add_completed_at_to_tasks.rb
+
+class AddCompletedAtToTasks < ActiveRecord::Migration[6.0]
+  def change
+    add_column :tasks, :completed_at, :datetime
+  end
+end
+```
+
+```ruby
+# app/models/task.rb
+
+class Task < ActiveRecord::Base
+  has_event :complete
+end
+```
+
+All of the macro options are supported by the generator and can be passed via the command line.
+For instance:
+
+```
+$ rails generate active_record:event user confirm --object=email --skip-scopes
+```
+
+For more information, run the generator with the `--help` option.
 
 ### Overriding methods
 

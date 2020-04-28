@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'generators/active_record/event_generator'
+require 'generators/active_record/event/event_generator'
 
 RSpec.describe ActiveRecord::Generators::EventGenerator, type: :generator do
   arguments %w[task complete --field-type=date --skip-scopes]
-  destination File.expand_path('../../../tmp', __dir__)
+  destination File.expand_path('../../../../tmp', __dir__)
 
   before { prepare_destination }
 

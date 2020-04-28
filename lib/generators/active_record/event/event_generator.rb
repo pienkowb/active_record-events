@@ -11,9 +11,14 @@ module ActiveRecord
       argument :model_name, type: :string
       argument :event_name, type: :string
 
-      class_option :skip_scopes, type: :boolean
-      class_option :field_type, type: :string
-      class_option :object, type: :string
+      class_option :skip_scopes, type: :boolean,
+        desc: 'Skip the inclusion of scope methods'
+      class_option :field_type, type: :string,
+        desc: 'The field type (datetime or date)'
+      class_option :object, type: :string,
+        desc: 'The name of the object'
+
+      source_root File.expand_path('templates', __dir__)
 
       def generate_migration_file
         naming = ActiveRecord::Events::Naming.new(event_name, options)
