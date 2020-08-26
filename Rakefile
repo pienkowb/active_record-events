@@ -22,9 +22,23 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-require 'standalone_migrations'
+require 'active_record'
+require 'yaml'
 
-StandaloneMigrations::Tasks.load_tasks
+include ActiveRecord::Tasks
+
+dummy_root = File.expand_path('spec/dummy', __dir__)
+database_config = YAML.load_file("#{dummy_root}/config/database.yml")
+
+DatabaseTasks.root = dummy_root
+DatabaseTasks.env = ENV['RAILS_ENV'] || 'development'
+DatabaseTasks.db_dir = "#{dummy_root}/db"
+DatabaseTasks.database_configuration = database_config
+DatabaseTasks.migrations_paths = "#{dummy_root}/db/migrate"
+
+task :environment do
+  require "#{dummy_root}/config/environment.rb"
+end
 
 ACTIVE_RECORD_MIGRATION_CLASS =
   if ActiveRecord::VERSION::MAJOR >= 5
@@ -32,6 +46,8 @@ ACTIVE_RECORD_MIGRATION_CLASS =
   else
     ActiveRecord::Migration
   end
+
+load 'active_record/railties/databases.rake'
 
 Bundler::GemHelper.install_tasks
 

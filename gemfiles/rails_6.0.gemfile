@@ -2,7 +2,6 @@
 
 source "https://rubygems.org"
 
-gem "activerecord", "~> 3.2.22"
-gem "test-unit", "~> 3.3.5"
+gem "activerecord", "~> 6.0.3"
 
 gemspec path: "../"
