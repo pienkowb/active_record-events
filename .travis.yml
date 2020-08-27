@@ -11,7 +11,6 @@ rvm:
   - 2.7.1
 
 gemfile:
-  - gemfiles/rails_3.2.gemfile
   - gemfiles/rails_4.2.gemfile
   - gemfiles/rails_5.2.gemfile
   - gemfiles/rails_6.0.gemfile
@@ -31,15 +30,7 @@ matrix:
     - rvm: 2.3.8
       gemfile: gemfiles/rails_6.0.gemfile
     - rvm: 2.4.10
-      gemfile: gemfiles/rails_3.2.gemfile
-    - rvm: 2.4.10
       gemfile: gemfiles/rails_6.0.gemfile
-    - rvm: 2.5.8
-      gemfile: gemfiles/rails_3.2.gemfile
-    - rvm: 2.6.6
-      gemfile: gemfiles/rails_3.2.gemfile
-    - rvm: 2.7.1
-      gemfile: gemfiles/rails_3.2.gemfile
     - rvm: 2.7.1
       gemfile: gemfiles/rails_4.2.gemfile
 
