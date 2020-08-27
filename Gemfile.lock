@@ -3,7 +3,7 @@ PATH
   specs:
     active_record-events (3.0.0)
       activerecord (>= 3.0)
-      verbs (~> 2.1)
+      verbs (~> 2.2)
 
 GEM
   remote: https://rubygems.org/
