@@ -8,7 +8,7 @@ Style/Documentation:
   Enabled: false
 
 Layout/AlignHash:
-  Enabled: false
+  EnforcedLastArgumentHashStyle: ignore_implicit
 
 Naming/PredicateName:
   Exclude:
