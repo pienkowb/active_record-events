@@ -20,7 +20,6 @@ end
 
 appraise 'activerecord-4.2' do
   gem 'activerecord', '~> 4.2.11'
-  gem 'nokogiri', '~> 1.6.8'
   gem 'sqlite3', '~> 1.3.6'
 end
 
