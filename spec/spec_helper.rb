@@ -1,5 +1,10 @@
 ENV['RAILS_ENV'] ||= 'test'
 
+require 'bundler/setup'
+require 'coveralls'
+
+Coveralls.wear!
+
 require File.expand_path('dummy/config/environment.rb', __dir__)
 
 require 'factory_girl'
