@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.email = 'pienkowb@gmail.com'
   spec.homepage = 'https://github.com/pienkowb/active_record-events'
   spec.summary = 'Manage timestamps in ActiveRecord models'
-  spec.description = 'An ActiveRecord extension providing convenience methods for timestamp management.'
+  spec.description = 'An ActiveRecord extension providing convenience ' \
+                     'methods for timestamp management.'
   spec.license = 'MIT'
 
   spec.files = Dir['lib/**/*'] + %w[LICENSE Rakefile README.md]

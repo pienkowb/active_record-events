@@ -12,20 +12,16 @@ Layout/AlignHash:
 
 Naming/PredicateName:
   Exclude:
-    - lib/active_record/events.rb
+    - lib/active_record/events/extension.rb
 
 Metrics/AbcSize:
   Exclude:
-    - lib/active_record/events.rb
+    - lib/active_record/events/extension.rb
 
 Metrics/MethodLength:
   Exclude:
-    - lib/active_record/events.rb
+    - lib/active_record/events/extension.rb
 
 Metrics/BlockLength:
-  Exclude:
-    - spec/**/*_spec.rb
-
-Metrics/LineLength:
-  Exclude:
-    - active_record-events.gemspec
+  ExcludedMethods:
+    - describe

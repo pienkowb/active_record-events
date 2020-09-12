@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe ActiveRecord::Events do
-  around { |e| Timecop.freeze { e.run } }
+  around(:each) do |example|
+    Timecop.freeze { example.run }
+  end
 
   let!(:task) { create(:task) }
 
@@ -32,6 +34,7 @@ RSpec.describe ActiveRecord::Events do
 
   it 'records multiple timestamps at once' do
     Task.complete_all
+
     expect(task.reload).to be_completed
   end
 

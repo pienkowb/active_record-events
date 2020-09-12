@@ -1,4 +1,4 @@
-# ActiveRecord::Events [![Gem version](https://img.shields.io/gem/v/active_record-events.svg)](https://rubygems.org/gems/active_record-events) [![Build status](https://img.shields.io/travis/pienkowb/active_record-events/master.svg)](https://travis-ci.org/pienkowb/active_record-events)
+# ActiveRecord::Events [![Gem version](https://img.shields.io/gem/v/active_record-events)](https://rubygems.org/gems/active_record-events) [![Build status](https://img.shields.io/travis/pienkowb/active_record-events/develop)](https://travis-ci.org/pienkowb/active_record-events)
 
 An ActiveRecord extension providing convenience methods for timestamp management.
 

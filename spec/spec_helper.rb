@@ -10,9 +10,6 @@ require 'zonebie/rspec'
 Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
-  config.color = true
-  config.order = :random
-
   config.include FactoryGirl::Syntax::Methods
   config.include GeneratorHelpers, type: :generator
 end
