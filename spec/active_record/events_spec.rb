@@ -46,16 +46,6 @@ RSpec.describe ActiveRecord::Events do
     expect(Task.not_completed).to include(task)
   end
 
-  context 'with the skip scopes flag' do
-    it "doesn't define a scope" do
-      expect(Task).not_to respond_to(:archived)
-    end
-
-    it "doesn't define an inverse scope" do
-      expect(Task).not_to respond_to(:not_archived)
-    end
-  end
-
   it 'allows overriding instance methods' do
     expect(ActiveRecord::Base.logger).to receive(:info)
 

@@ -14,14 +14,6 @@ Naming/PredicateName:
   Exclude:
     - lib/active_record/events/extension.rb
 
-Metrics/AbcSize:
-  Exclude:
-    - lib/active_record/events/extension.rb
-
-Metrics/MethodLength:
-  Exclude:
-    - lib/active_record/events/extension.rb
-
 Metrics/BlockLength:
   ExcludedMethods:
     - describe
