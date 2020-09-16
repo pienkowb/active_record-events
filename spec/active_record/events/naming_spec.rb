@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 RSpec.describe ActiveRecord::Events::Naming do
-  subject { described_class.new(:complete) }
+  let(:event_name) { :complete }
+  let(:options) { {} }
+
+  subject { described_class.new(event_name, options) }
 
   it 'generates a field name' do
     expect(subject.field).to eq('completed_at')
@@ -36,46 +39,54 @@ RSpec.describe ActiveRecord::Events::Naming do
   end
 
   context 'with an object' do
-    subject { described_class.new(:confirm, object: :email) }
+    let(:options) { { object: :task } }
 
     it 'generates a field name' do
-      expect(subject.field).to eq('email_confirmed_at')
+      expect(subject.field).to eq('task_completed_at')
     end
 
     it 'generates a predicate name' do
-      expect(subject.predicate).to eq('email_confirmed?')
+      expect(subject.predicate).to eq('task_completed?')
     end
 
     it 'generates an inverse predicate name' do
-      expect(subject.inverse_predicate).to eq('email_not_confirmed?')
+      expect(subject.inverse_predicate).to eq('task_not_completed?')
     end
 
     it 'generates an action name' do
-      expect(subject.action).to eq('confirm_email!')
+      expect(subject.action).to eq('complete_task!')
     end
 
     it 'generates a safe action name' do
-      expect(subject.safe_action).to eq('confirm_email')
+      expect(subject.safe_action).to eq('complete_task')
     end
 
     it 'generates a collective action name' do
-      expect(subject.collective_action).to eq('confirm_all_emails')
+      expect(subject.collective_action).to eq('complete_all_tasks')
     end
 
     it 'generates a scope name' do
-      expect(subject.scope).to eq('email_confirmed')
+      expect(subject.scope).to eq('task_completed')
     end
 
     it 'generates an inverse scope name' do
-      expect(subject.inverse_scope).to eq('email_not_confirmed')
+      expect(subject.inverse_scope).to eq('task_not_completed')
     end
   end
 
   context 'with a date field' do
-    subject { described_class.new(:deliver, field_type: :date) }
+    let(:options) { { field_type: :date } }
 
     it 'generates a field name' do
-      expect(subject.field).to eq('delivered_on')
+      expect(subject.field).to eq('completed_on')
+    end
+  end
+
+  context 'with a custom field name' do
+    let(:options) { { field_name: :completion_time } }
+
+    it 'returns the field name' do
+      expect(subject.field).to eq('completion_time')
     end
   end
 end

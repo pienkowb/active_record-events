@@ -6,11 +6,15 @@ module ActiveRecord
       def initialize(infinitive, options = {})
         @infinitive = infinitive
         @object = options[:object].presence
+        @field_name = options[:field_name].to_s
         @field_type = options[:field_type].try(:to_sym)
       end
 
       def field
+        return field_name if field_name.present?
+
         suffix = field_type == :date ? 'on' : 'at'
+
         concatenate(object, past_participle, suffix)
       end
 
@@ -46,6 +50,7 @@ module ActiveRecord
 
       attr_reader :infinitive
       attr_reader :object
+      attr_reader :field_name
       attr_reader :field_type
 
       def concatenate(*parts)

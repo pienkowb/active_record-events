@@ -93,13 +93,23 @@ In such a case, many lines of code can be replaced with an expressive one-liner.
 has_events :complete, :archive
 ```
 
-### Setting a field type
+### Date fields
 
-In case of date fields, which by convention have names ending with `_on` instead of `_at` (e.g. `delivered_on`), the `field_type` option needs to be passed to the macro:
+In case of date fields, which by convention have names ending with `_on` instead of `_at` (e.g. `completed_on`), the `field_type` option needs to be passed to the macro:
 
 ```ruby
-has_event :deliver, field_type: :date
+has_event :complete, field_type: :date
 ```
+
+### Custom field name
+
+If there's a field with a name that doesn't follow the naming convention (i.e. does not end with `_at` or `_on`), you can pass it as the `field_name` option.
+
+```ruby
+has_event :complete, field_name: :completion_time
+```
+
+Note that the `field_name` option takes precedence over the `field_type` option.
 
 ### Specifying an object
 
