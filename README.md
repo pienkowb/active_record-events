@@ -2,6 +2,14 @@
 
 An ActiveRecord extension providing convenience methods for timestamp management.
 
+## Screencast
+
+<a href="https://www.youtube.com/watch?v=TIR7YDF3O-4">
+  <img src="https://img.youtube.com/vi/TIR7YDF3O-4/maxresdefault.jpg" title="ActiveRecord::Events - Awesome Ruby Gems" width="50%">
+</a>
+
+[Watch screencast](https://www.youtube.com/watch?v=TIR7YDF3O-4) (courtesy of [Mike Rogers](https://github.com/MikeRogers0))
+
 ## Installation
 
 Add the following line to your application's Gemfile:
