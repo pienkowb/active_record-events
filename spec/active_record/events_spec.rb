@@ -32,6 +32,14 @@ RSpec.describe ActiveRecord::Events do
     expect(task.completed_at).to eq(Time.current)
   end
 
+  it 'On non-persisted object, it updates the timestamp' do
+    task = build(:task, completed_at: 3.days.ago)
+
+    task.complete!
+
+    expect(task.completed_at).to eq(Time.current)
+  end
+
   it 'records multiple timestamps at once' do
     Task.complete_all
 
