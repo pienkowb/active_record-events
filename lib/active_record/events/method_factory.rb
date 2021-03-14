@@ -48,7 +48,11 @@ module ActiveRecord
 
       def define_action_method(module_, naming)
         module_.send(:define_method, naming.action) do
-          touch(naming.field)
+          if persisted?
+            touch(naming.field)
+          else
+            self[naming.field] = current_time_from_proper_timezone
+          end
         end
       end
 
