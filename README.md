@@ -207,6 +207,7 @@ end
 - [Bartosz Pieńkowski](https://github.com/pienkowb)
 - [Tomasz Skupiński](https://github.com/tskupinski)
 - [Oskar Janusz](https://github.com/oskaror)
+- [Mike Rogers](https://github.com/MikeRogers0)
 
 ## See also
 
