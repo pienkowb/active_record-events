@@ -51,7 +51,7 @@ module ActiveRecord
           if persisted?
             touch(naming.field)
           else
-            send("#{naming.field}=", Time.zone.now)
+            self[naming.field] = current_time_from_proper_timezone
           end
         end
       end
