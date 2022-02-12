@@ -1,3 +1,13 @@
+appraise 'activerecord-7.0' do
+  gem 'activerecord', '~> 7.0'
+  gem 'sqlite3', '~> 1.4'
+end
+
+appraise 'activerecord-6.1' do
+  gem 'activerecord', '~> 6.1'
+  gem 'sqlite3', '~> 1.4'
+end
+
 appraise 'activerecord-6.0' do
   gem 'activerecord', '~> 6.0.3'
   gem 'sqlite3', '~> 1.4'
