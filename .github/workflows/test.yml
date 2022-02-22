@@ -89,3 +89,8 @@ jobs:
 
       - name: Run Rubocop
         run: bundle exec rubocop
+
+      - name: Upload coverage data to Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,9 +1,20 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'bundler/setup'
-require 'coveralls'
+require 'simplecov'
 
-Coveralls.wear!
+SimpleCov.start do
+  if ENV['CI']
+    require 'simplecov-lcov'
+
+    SimpleCov::Formatter::LcovFormatter.config do |config|
+      config.report_with_single_file = true
+      config.single_report_path = 'coverage/lcov.info'
+    end
+
+    formatter SimpleCov::Formatter::LcovFormatter
+  end
+end
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 
