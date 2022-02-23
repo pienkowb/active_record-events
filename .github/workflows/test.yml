@@ -12,6 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
+          - '3.0'
           - '2.7'
           - '2.6'
           - '2.5'
@@ -29,6 +30,18 @@ jobs:
           - activerecord_4.1
           - activerecord_4.0
         exclude:
+          - ruby: '3.0'
+            gemfile: activerecord_5.2
+          - ruby: '3.0'
+            gemfile: activerecord_5.1
+          - ruby: '3.0'
+            gemfile: activerecord_5.0
+          - ruby: '3.0'
+            gemfile: activerecord_4.2
+          - ruby: '3.0'
+            gemfile: activerecord_4.1
+          - ruby: '3.0'
+            gemfile: activerecord_4.0
           - ruby: '2.7'
             gemfile: activerecord_4.2
           - ruby: '2.7'
