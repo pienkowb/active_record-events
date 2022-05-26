@@ -10,7 +10,7 @@ module ActiveRecord
 
       def instance_methods
         Module.new.tap do |module_|
-          define_predicate_method(module_, naming)
+          define_predicate_method(module_, naming, options[:strategy])
           define_inverse_predicate_method(module_, naming)
 
           define_action_method(module_, naming)
@@ -23,8 +23,8 @@ module ActiveRecord
           define_collective_action_method(module_, naming)
 
           unless options[:skip_scopes]
-            define_scope_method(module_, naming)
-            define_inverse_scope_method(module_, naming)
+            define_scope_method(module_, naming, options[:strategy])
+            define_inverse_scope_method(module_, naming, options[:strategy])
           end
         end
       end
@@ -34,9 +34,13 @@ module ActiveRecord
       attr_reader :options
       attr_reader :naming
 
-      def define_predicate_method(module_, naming)
+      def define_predicate_method(module_, naming, strategy = :presence)
         module_.send(:define_method, naming.predicate) do
-          self[naming.field].present?
+          if strategy.try(:to_sym) == :time_comparison
+            self[naming.field].present? && self[naming.field] < Time.current
+          else
+            self[naming.field].present?
+          end
         end
       end
 
@@ -72,15 +76,23 @@ module ActiveRecord
         end
       end
 
-      def define_scope_method(module_, naming)
+      def define_scope_method(module_, naming, strategy = :presence)
         module_.send(:define_method, naming.scope) do
-          where(arel_table[naming.field].not_eq(nil))
+          if strategy.try(:to_sym) == :time_comparison
+            where(arel_table[naming.field].lteq(Time.current))
+          else
+            where(arel_table[naming.field].not_eq(nil))
+          end
         end
       end
 
-      def define_inverse_scope_method(module_, naming)
+      def define_inverse_scope_method(module_, naming, strategy = :presence)
         module_.send(:define_method, naming.inverse_scope) do
-          where(arel_table[naming.field].eq(nil))
+          if strategy.try(:to_sym) == :time_comparison
+            where(arel_table[naming.field].eq(nil).or(arel_table[naming.field].gt(Time.current)))
+          else
+            where(arel_table[naming.field].eq(nil))
+          end
         end
       end
     end
