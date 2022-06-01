@@ -18,7 +18,7 @@ module ActiveRecord
       class_option :object, type: :string,
         desc: 'The name of the object'
       class_option :strategy, type: :string,
-        desc: 'Define comparison strategy, presence or time_comparison'
+        desc: 'The comparison strategy (presence or time_comparison)'
 
       source_root File.expand_path('templates', __dir__)
 

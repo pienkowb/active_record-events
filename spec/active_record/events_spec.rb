@@ -72,7 +72,7 @@ RSpec.describe ActiveRecord::Events do
     expect(task.reload).to be_completed
   end
 
-  context 'when strategy is time_comparison' do
+  context 'when the strategy is time comparison' do
     it 'defines a predicate method comparing against current time' do
       task.update_columns(expired_at: 1.hour.from_now)
       expect(task.expired?).to eq(false)

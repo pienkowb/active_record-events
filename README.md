@@ -121,7 +121,7 @@ Note that the `field_name` option takes precedence over the `field_type` option.
 
 ### Comparison strategy
 
-By default the field's presence will dictate the behavior. However in some cases you may want to check against the current time.
+By default the timestamp's presence will dictate the behavior. However in some cases you may want to check against the current time.
 
 You can do this with the `strategy` option, which can be either `presence` or `time_comparison`:
 
@@ -134,11 +134,9 @@ has_event :complete, strategy: :time_comparison
 ```ruby
 task.completed_at = 1.hour.ago
 task.completed? # => true
-Task.completed  # => [...]
 
 task.completed_at = 1.hour.from_now
 task.completed? # => false
-Task.completed  # => []
 ```
 
 ### Specifying an object
