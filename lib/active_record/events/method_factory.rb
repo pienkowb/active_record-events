@@ -90,11 +90,12 @@ module ActiveRecord
 
       def define_inverse_scope_method(module_, naming, strategy)
         module_.send(:define_method, naming.inverse_scope) do
+          arel_field = arel_table[naming.field]
+
           if strategy == :time_comparison
-            where(arel_table[naming.field].eq(nil)
-              .or(arel_table[naming.field].gt(Time.current)))
+            where(arel_field.eq(nil).or(arel_field.gt(Time.current)))
           else
-            where(arel_table[naming.field].eq(nil))
+            where(arel_field.eq(nil))
           end
         end
       end
