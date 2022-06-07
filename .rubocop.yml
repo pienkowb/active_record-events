@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - vendor/**/*
     - spec/dummy/db/schema.rb
+    - tmp/**/*
 
 Style/Documentation:
   Enabled: false
