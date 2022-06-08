@@ -119,6 +119,26 @@ has_event :complete, field_name: :completion_time
 
 Note that the `field_name` option takes precedence over the `field_type` option.
 
+### Comparison strategy
+
+By default the timestamp's presence will dictate the behavior. However in some cases you may want to check against the current time.
+
+You can do this with the `strategy` option, which can be either `presence` or `time_comparison`:
+
+```ruby
+has_event :complete, strategy: :time_comparison
+```
+
+**Example:**
+
+```ruby
+task.completed_at = 1.hour.ago
+task.completed? # => true
+
+task.completed_at = 1.hour.from_now
+task.completed? # => false
+```
+
 ### Specifying an object
 
 There are events which do not relate to a model itself but to one of its attributes – take the `User` model with the `email_confirmed_at` field as an example.

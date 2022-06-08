@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2015_08_13_132804) do
 
   create_table "tasks", force: :cascade do |t|
     t.datetime "completed_at"
+    t.datetime "expired_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

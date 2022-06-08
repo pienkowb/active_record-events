@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
   has_event :complete
-  has_events :archive, skip_scopes: true
+  has_event :archive, skip_scopes: true
+  has_events :expire, strategy: :time_comparison
 
   def complete!
     super

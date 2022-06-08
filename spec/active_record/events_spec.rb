@@ -71,4 +71,50 @@ RSpec.describe ActiveRecord::Events do
 
     expect(task.reload).to be_completed
   end
+
+  describe 'time comparison strategy' do
+    it 'defines a predicate method comparing against current time' do
+      task.update_columns(expired_at: 1.hour.from_now)
+      expect(task.expired?).to eq(false)
+
+      task.update_columns(expired_at: 1.hour.ago)
+      expect(task.expired?).to eq(true)
+
+      task.update_columns(expired_at: nil)
+      expect(task.expired?).to eq(false)
+    end
+
+    it 'defines an inverse predicate method comparing against current time' do
+      task.update_columns(expired_at: 1.hour.from_now)
+      expect(task.not_expired?).to eq(true)
+
+      task.update_columns(expired_at: 1.hour.ago)
+      expect(task.not_expired?).to eq(false)
+
+      task.update_columns(expired_at: nil)
+      expect(task.not_expired?).to eq(true)
+    end
+
+    it 'defines a scope comparing against current time' do
+      task.update_columns(expired_at: 1.hour.from_now)
+      expect(Task.expired).not_to include(task)
+
+      task.update_columns(expired_at: 1.hour.ago)
+      expect(Task.expired).to include(task)
+
+      task.update_columns(expired_at: nil)
+      expect(Task.expired).not_to include(task)
+    end
+
+    it 'defines an inverse scope comparing against current time' do
+      task.update_columns(expired_at: 1.hour.from_now)
+      expect(Task.not_expired).to include(task)
+
+      task.update_columns(expired_at: 1.hour.ago)
+      expect(Task.not_expired).not_to include(task)
+
+      task.update_columns(expired_at: nil)
+      expect(Task.not_expired).to include(task)
+    end
+  end
 end
