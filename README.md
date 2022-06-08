@@ -228,6 +228,7 @@ end
 - [Tomasz Skupiński](https://github.com/tskupinski)
 - [Oskar Janusz](https://github.com/oskaror)
 - [Mike Rogers](https://github.com/MikeRogers0)
+- [Spencer Rogers](https://github.com/serogers)
 
 ## See also
 
