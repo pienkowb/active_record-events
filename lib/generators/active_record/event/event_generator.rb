@@ -41,7 +41,7 @@ module ActiveRecord
         macro_options = options.slice(*MACRO_OPTIONS)
         macro = ActiveRecord::Events::Macro.new(event_name, macro_options)
 
-        inject_into_file model_file_path, "\s\s#{macro}\n", after: /class.+\n/
+        inject_into_file model_file_path, "\s\s#{macro}\n", after: /^\s*class\s.+\n/
       end
 
       private
