@@ -2,7 +2,9 @@ AllCops:
   TargetRubyVersion: 2.0
   DisplayCopNames: true
   Exclude:
+    - vendor/**/*
     - spec/dummy/db/schema.rb
+    - tmp/**/*
 
 Style/Documentation:
   Enabled: false

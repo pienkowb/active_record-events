@@ -2,7 +2,13 @@ require 'spec_helper'
 require 'generators/active_record/event/event_generator'
 
 RSpec.describe ActiveRecord::Generators::EventGenerator, type: :generator do
-  arguments %w[task complete --field-type=date --skip-scopes]
+  arguments %w[
+    task complete
+    --field-type=date
+    --skip-scopes
+    --strategy=time_comparison
+  ]
+
   destination File.expand_path('../../../../tmp', __dir__)
 
   before { prepare_destination }
@@ -30,7 +36,7 @@ RSpec.describe ActiveRecord::Generators::EventGenerator, type: :generator do
 
       assert_file 'app/models/task.rb', <<-RUBY.strip_heredoc
         class Task < ActiveRecord::Base
-          has_event :complete, field_type: :date, skip_scopes: true
+          has_event :complete, field_type: :date, skip_scopes: true, strategy: :time_comparison
         end
       RUBY
     end

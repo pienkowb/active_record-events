@@ -1,4 +1,4 @@
-# ActiveRecord::Events [![Gem version](https://img.shields.io/gem/v/active_record-events)](https://rubygems.org/gems/active_record-events) [![Build status](https://img.shields.io/travis/pienkowb/active_record-events/develop)](https://travis-ci.org/pienkowb/active_record-events) [![Coverage status](https://img.shields.io/coveralls/github/pienkowb/active_record-events/develop)](https://coveralls.io/github/pienkowb/active_record-events) [![Maintainability status](https://img.shields.io/codeclimate/maintainability/pienkowb/active_record-events)](https://codeclimate.com/github/pienkowb/active_record-events)
+# ActiveRecord::Events [![Gem version](https://img.shields.io/gem/v/active_record-events)](https://rubygems.org/gems/active_record-events) [![Build status](https://img.shields.io/github/workflow/status/pienkowb/active_record-events/Test/develop)](https://github.com/pienkowb/active_record-events/actions/workflows/test.yml?query=branch%3Adevelop) [![Coverage status](https://img.shields.io/coveralls/github/pienkowb/active_record-events/develop)](https://coveralls.io/github/pienkowb/active_record-events) [![Maintainability status](https://img.shields.io/codeclimate/maintainability/pienkowb/active_record-events)](https://codeclimate.com/github/pienkowb/active_record-events)
 
 An ActiveRecord extension providing convenience methods for timestamp management.
 
@@ -119,6 +119,26 @@ has_event :complete, field_name: :completion_time
 
 Note that the `field_name` option takes precedence over the `field_type` option.
 
+### Comparison strategy
+
+By default the timestamp's presence will dictate the behavior. However in some cases you may want to check against the current time.
+
+You can do this with the `strategy` option, which can be either `presence` or `time_comparison`:
+
+```ruby
+has_event :complete, strategy: :time_comparison
+```
+
+**Example:**
+
+```ruby
+task.completed_at = 1.hour.ago
+task.completed? # => true
+
+task.completed_at = 1.hour.from_now
+task.completed? # => false
+```
+
 ### Specifying an object
 
 There are events which do not relate to a model itself but to one of its attributes – take the `User` model with the `email_confirmed_at` field as an example.
@@ -208,6 +228,7 @@ end
 - [Tomasz Skupiński](https://github.com/tskupinski)
 - [Oskar Janusz](https://github.com/oskaror)
 - [Mike Rogers](https://github.com/MikeRogers0)
+- [Spencer Rogers](https://github.com/serogers)
 
 ## See also
 

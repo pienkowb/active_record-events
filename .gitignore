@@ -1,6 +1,8 @@
 .bundle/
 log/*.log
 pkg/
+coverage/
+
 spec/dummy/db/*.sqlite3
 
 Gemfile.lock

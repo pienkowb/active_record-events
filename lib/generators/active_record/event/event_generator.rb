@@ -6,7 +6,7 @@ require 'active_record/events/macro'
 module ActiveRecord
   module Generators
     class EventGenerator < Rails::Generators::Base
-      MACRO_OPTIONS = %w[object field_type skip_scopes].freeze
+      MACRO_OPTIONS = %w[object field_type skip_scopes strategy].freeze
 
       argument :model_name, type: :string
       argument :event_name, type: :string
@@ -17,6 +17,8 @@ module ActiveRecord
         desc: 'The field type (datetime or date)'
       class_option :object, type: :string,
         desc: 'The name of the object'
+      class_option :strategy, type: :string,
+        desc: 'The comparison strategy (presence or time_comparison)'
 
       source_root File.expand_path('templates', __dir__)
 
@@ -38,8 +40,9 @@ module ActiveRecord
 
         macro_options = options.slice(*MACRO_OPTIONS)
         macro = ActiveRecord::Events::Macro.new(event_name, macro_options)
+        pattern = /^\s*class\s.+\n/
 
-        inject_into_file model_file_path, "\s\s#{macro}\n", after: /class.+\n/
+        inject_into_file model_file_path, "\s\s#{macro}\n", after: pattern
       end
 
       private
