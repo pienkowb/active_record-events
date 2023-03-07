@@ -39,7 +39,7 @@ module ActiveRecord
       def define_predicate_method(module_, naming, strategy)
         module_.send(:define_method, naming.predicate) do
           if strategy == :time_comparison
-            self[naming.field].present? && self[naming.field].past?
+            self[naming.field].present? && !self[naming.field].future?
           else
             self[naming.field].present?
           end
