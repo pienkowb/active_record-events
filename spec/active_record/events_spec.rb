@@ -132,6 +132,16 @@ RSpec.describe ActiveRecord::Events do
         task.update_columns(notified_on: Date.yesterday)
         expect(task.notified?).to eq(true)
       end
+
+      it 'includes current date in scope' do
+        task.update_columns(notified_on: Date.current)
+        expect(Task.notified).to include(task)
+      end
+
+      it 'excludes current date in inverse scope' do
+        task.update_columns(notified_on: Date.current)
+        expect(Task.not_notified).not_to include(task)
+      end
     end
   end
 end
