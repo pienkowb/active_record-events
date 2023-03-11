@@ -116,5 +116,32 @@ RSpec.describe ActiveRecord::Events do
       task.update_columns(expired_at: nil)
       expect(Task.not_expired).to include(task)
     end
+
+    describe 'for date fields' do
+      it "considers today's event over" do
+        task.update_columns(notified_on: Date.today)
+        expect(task.notified?).to eq(true)
+      end
+
+      it "considers tomorrow's event pending" do
+        task.update_columns(notified_on: Date.tomorrow)
+        expect(task.notified?).to eq(false)
+      end
+
+      it "considers yesterday's event over" do
+        task.update_columns(notified_on: Date.yesterday)
+        expect(task.notified?).to eq(true)
+      end
+
+      it 'includes current date in scope' do
+        task.update_columns(notified_on: Date.current)
+        expect(Task.notified).to include(task)
+      end
+
+      it 'excludes current date in inverse scope' do
+        task.update_columns(notified_on: Date.current)
+        expect(Task.not_notified).not_to include(task)
+      end
+    end
   end
 end
