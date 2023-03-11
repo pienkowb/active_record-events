@@ -118,17 +118,17 @@ RSpec.describe ActiveRecord::Events do
     end
 
     describe 'for date fields' do
-      it 'consider today\'s event over' do
+      it "considers today's event over" do
         task.update_columns(notified_on: Date.today)
         expect(task.notified?).to eq(true)
       end
 
-      it 'consider tomorrow\'s event pending' do
+      it "considers tomorrow's event pending" do
         task.update_columns(notified_on: Date.tomorrow)
         expect(task.notified?).to eq(false)
       end
 
-      it 'consider yesterday\'s event over' do
+      it "considers yesterday's event over" do
         task.update_columns(notified_on: Date.yesterday)
         expect(task.notified?).to eq(true)
       end
