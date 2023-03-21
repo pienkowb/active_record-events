@@ -7,6 +7,7 @@ module ActiveRecord
         @options = options
         @naming = Naming.new(event_name, options)
         @strategy = options[:strategy].try(:to_sym)
+        @field_type = options[:field_type].try(:to_sym)
       end
 
       def instance_methods
@@ -21,11 +22,13 @@ module ActiveRecord
 
       def class_methods
         Module.new.tap do |module_|
-          define_collective_action_method(module_, naming)
+          time_class = field_type == :date ? Date : Time
+
+          define_collective_action_method(module_, naming, time_class)
 
           unless options[:skip_scopes]
-            define_scope_method(module_, naming, strategy)
-            define_inverse_scope_method(module_, naming, strategy)
+            define_scope_method(module_, naming, strategy, time_class)
+            define_inverse_scope_method(module_, naming, strategy, time_class)
           end
         end
       end
@@ -35,6 +38,7 @@ module ActiveRecord
       attr_reader :options
       attr_reader :naming
       attr_reader :strategy
+      attr_reader :field_type
 
       def define_predicate_method(module_, naming, strategy)
         module_.send(:define_method, naming.predicate) do
@@ -68,32 +72,32 @@ module ActiveRecord
         end
       end
 
-      def define_collective_action_method(module_, naming)
+      def define_collective_action_method(module_, naming, time_class)
         module_.send(:define_method, naming.collective_action) do
           if respond_to?(:touch_all)
             touch_all(naming.field)
           else
-            update_all(naming.field => Time.current)
+            update_all(naming.field => time_class.current)
           end
         end
       end
 
-      def define_scope_method(module_, naming, strategy)
+      def define_scope_method(module_, naming, strategy, time_class)
         module_.send(:define_method, naming.scope) do
           if strategy == :time_comparison
-            where(arel_table[naming.field].lteq(Time.current))
+            where(arel_table[naming.field].lteq(time_class.current))
           else
             where(arel_table[naming.field].not_eq(nil))
           end
         end
       end
 
-      def define_inverse_scope_method(module_, naming, strategy)
+      def define_inverse_scope_method(module_, naming, strategy, time_class)
         module_.send(:define_method, naming.inverse_scope) do
           arel_field = arel_table[naming.field]
 
           if strategy == :time_comparison
-            where(arel_field.eq(nil).or(arel_field.gt(Time.current)))
+            where(arel_field.eq(nil).or(arel_field.gt(time_class.current)))
           else
             where(arel_field.eq(nil))
           end
