@@ -74,73 +74,104 @@ RSpec.describe ActiveRecord::Events do
 
   describe 'time comparison strategy' do
     it 'defines a predicate method comparing against current time' do
-      task.update_columns(expired_at: 1.hour.from_now)
+      task.update!(expired_at: 1.hour.from_now)
       expect(task.expired?).to eq(false)
 
-      task.update_columns(expired_at: 1.hour.ago)
+      task.update!(expired_at: 1.hour.ago)
       expect(task.expired?).to eq(true)
 
-      task.update_columns(expired_at: nil)
+      task.update!(expired_at: nil)
       expect(task.expired?).to eq(false)
     end
 
     it 'defines an inverse predicate method comparing against current time' do
-      task.update_columns(expired_at: 1.hour.from_now)
+      task.update!(expired_at: 1.hour.from_now)
       expect(task.not_expired?).to eq(true)
 
-      task.update_columns(expired_at: 1.hour.ago)
+      task.update!(expired_at: 1.hour.ago)
       expect(task.not_expired?).to eq(false)
 
-      task.update_columns(expired_at: nil)
+      task.update!(expired_at: nil)
       expect(task.not_expired?).to eq(true)
     end
 
     it 'defines a scope comparing against current time' do
-      task.update_columns(expired_at: 1.hour.from_now)
+      task.update!(expired_at: 1.hour.from_now)
       expect(Task.expired).not_to include(task)
 
-      task.update_columns(expired_at: 1.hour.ago)
+      task.update!(expired_at: 1.hour.ago)
       expect(Task.expired).to include(task)
 
-      task.update_columns(expired_at: nil)
+      task.update!(expired_at: nil)
       expect(Task.expired).not_to include(task)
     end
 
     it 'defines an inverse scope comparing against current time' do
-      task.update_columns(expired_at: 1.hour.from_now)
+      task.update!(expired_at: 1.hour.from_now)
       expect(Task.not_expired).to include(task)
 
-      task.update_columns(expired_at: 1.hour.ago)
+      task.update!(expired_at: 1.hour.ago)
       expect(Task.not_expired).not_to include(task)
 
-      task.update_columns(expired_at: nil)
+      task.update!(expired_at: nil)
       expect(Task.not_expired).to include(task)
     end
 
-    describe 'for date fields' do
-      it "considers today's event over" do
-        task.update_columns(notified_on: Date.today)
+    context 'with a date field' do
+      it 'defines a predicate method comparing against current date' do
+        task.update!(notified_on: Date.yesterday)
         expect(task.notified?).to eq(true)
-      end
 
-      it "considers tomorrow's event pending" do
-        task.update_columns(notified_on: Date.tomorrow)
+        task.update!(notified_on: Date.today)
+        expect(task.notified?).to eq(true)
+
+        task.update!(notified_on: Date.tomorrow)
+        expect(task.notified?).to eq(false)
+
+        task.update!(notified_on: nil)
         expect(task.notified?).to eq(false)
       end
 
-      it "considers yesterday's event over" do
-        task.update_columns(notified_on: Date.yesterday)
-        expect(task.notified?).to eq(true)
+      it 'defines an inverse predicate method comparing against current date' do
+        task.update!(notified_on: Date.yesterday)
+        expect(task.not_notified?).to eq(false)
+
+        task.update!(notified_on: Date.today)
+        expect(task.not_notified?).to eq(false)
+
+        task.update!(notified_on: Date.tomorrow)
+        expect(task.not_notified?).to eq(true)
+
+        task.update!(notified_on: nil)
+        expect(task.not_notified?).to eq(true)
       end
 
-      it 'includes current date in scope' do
-        task.update_columns(notified_on: Date.current)
+      it 'defines a scope comparing against current date' do
+        task.update!(notified_on: Date.yesterday)
         expect(Task.notified).to include(task)
+
+        task.update!(notified_on: Date.today)
+        expect(Task.notified).to include(task)
+
+        task.update!(notified_on: Date.tomorrow)
+        expect(Task.notified).not_to include(task)
+
+        task.update!(notified_on: nil)
+        expect(Task.notified).not_to include(task)
       end
 
-      it 'excludes current date in inverse scope' do
-        task.update_columns(notified_on: Date.current)
+      it 'defines an inverse scope comparing against current date' do
+        task.update!(notified_on: Date.yesterday)
         expect(Task.not_notified).not_to include(task)
+
+        task.update!(notified_on: Date.today)
+        expect(Task.not_notified).not_to include(task)
+
+        task.update!(notified_on: Date.tomorrow)
+        expect(Task.not_notified).to include(task)
+
+        task.update!(notified_on: nil)
+        expect(Task.not_notified).to include(task)
       end
     end
   end

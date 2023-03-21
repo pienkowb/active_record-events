@@ -19,3 +19,4 @@ Naming/PredicateName:
 Metrics/BlockLength:
   ExcludedMethods:
     - describe
+    - context
