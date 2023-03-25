@@ -122,7 +122,7 @@ RSpec.describe ActiveRecord::Events do
         task.update!(notified_on: Date.yesterday)
         expect(task.notified?).to eq(true)
 
-        task.update!(notified_on: Date.today)
+        task.update!(notified_on: Date.current)
         expect(task.notified?).to eq(true)
 
         task.update!(notified_on: Date.tomorrow)
@@ -136,7 +136,7 @@ RSpec.describe ActiveRecord::Events do
         task.update!(notified_on: Date.yesterday)
         expect(task.not_notified?).to eq(false)
 
-        task.update!(notified_on: Date.today)
+        task.update!(notified_on: Date.current)
         expect(task.not_notified?).to eq(false)
 
         task.update!(notified_on: Date.tomorrow)
@@ -150,7 +150,7 @@ RSpec.describe ActiveRecord::Events do
         task.update!(notified_on: Date.yesterday)
         expect(Task.notified).to include(task)
 
-        task.update!(notified_on: Date.today)
+        task.update!(notified_on: Date.current)
         expect(Task.notified).to include(task)
 
         task.update!(notified_on: Date.tomorrow)
@@ -164,7 +164,7 @@ RSpec.describe ActiveRecord::Events do
         task.update!(notified_on: Date.yesterday)
         expect(Task.not_notified).not_to include(task)
 
-        task.update!(notified_on: Date.today)
+        task.update!(notified_on: Date.current)
         expect(Task.not_notified).not_to include(task)
 
         task.update!(notified_on: Date.tomorrow)
