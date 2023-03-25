@@ -22,10 +22,20 @@ require 'factory_girl'
 require 'generator_spec'
 require 'timecop'
 require 'zonebie/rspec'
+require 'database_cleaner/active_record'
 
 Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning { example.run }
+  end
+
   config.include FactoryGirl::Syntax::Methods
   config.include GeneratorHelpers, type: :generator
 end
