@@ -22,7 +22,7 @@ require 'factory_girl'
 require 'generator_spec'
 require 'timecop'
 require 'zonebie/rspec'
-require 'database_cleaner/active_record'
+require 'database_cleaner'
 
 Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
 
