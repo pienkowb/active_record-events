@@ -109,7 +109,7 @@ jobs:
           - ruby: '2.0'
             gemfile: activerecord_5.0
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       RAILS_ENV: test
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
