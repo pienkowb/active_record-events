@@ -10,6 +10,7 @@ end
 
 appraise 'activerecord-7.0' do
   gem 'activerecord', '~> 7.0.3'
+  gem 'concurrent-ruby', '1.3.4'
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
@@ -20,6 +21,7 @@ end
 
 appraise 'activerecord-6.1' do
   gem 'activerecord', '~> 6.1.6'
+  gem 'concurrent-ruby', '1.3.4'
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
@@ -30,6 +32,7 @@ end
 
 appraise 'activerecord-6.0' do
   gem 'activerecord', '~> 6.0.3'
+  gem 'concurrent-ruby', '1.3.4'
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
