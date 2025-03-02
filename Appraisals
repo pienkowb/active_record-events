@@ -46,7 +46,7 @@ appraise 'activerecord-5.2' do
 
   group :development do
     gem 'database_cleaner', '~> 1.99'
-    gem 'sqlite3', '~> 1.3', '>= 1.3.6'
+    gem 'sqlite3', '~> 1.3.6'
   end
 end
 
@@ -55,7 +55,7 @@ appraise 'activerecord-5.1' do
 
   group :development do
     gem 'database_cleaner', '~> 1.99'
-    gem 'sqlite3', '~> 1.3', '>= 1.3.6'
+    gem 'sqlite3', '~> 1.3.6'
   end
 end
 
