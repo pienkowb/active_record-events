@@ -18,7 +18,7 @@ end
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 
-require 'factory_girl'
+require 'factory_bot'
 require 'generator_spec'
 require 'timecop'
 require 'zonebie/rspec'
@@ -36,6 +36,6 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning { example.run }
   end
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include GeneratorHelpers, type: :generator
 end

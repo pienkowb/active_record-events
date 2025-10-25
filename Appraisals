@@ -1,3 +1,33 @@
+appraise 'activerecord-8.1' do
+  gem 'activerecord', '~> 8.1.0'
+
+  group :development do
+    gem 'database_cleaner', '~> 2.0'
+    gem 'rubocop', '~> 1.63'
+    gem 'sqlite3', '~> 2.1'
+  end
+end
+
+appraise 'activerecord-8.0' do
+  gem 'activerecord', '~> 8.0.0'
+
+  group :development do
+    gem 'database_cleaner', '~> 2.0'
+    gem 'rubocop', '~> 1.63'
+    gem 'sqlite3', '~> 2.1'
+  end
+end
+
+appraise 'activerecord-7.2' do
+  gem 'activerecord', '~> 7.2.2'
+
+  group :development do
+    gem 'database_cleaner', '~> 2.0'
+    gem 'rubocop', '~> 1.63'
+    gem 'sqlite3', '~> 2.0'
+  end
+end
+
 appraise 'activerecord-7.1' do
   gem 'activerecord', '~> 7.1.3'
 
@@ -22,6 +52,13 @@ end
 appraise 'activerecord-6.1' do
   gem 'activerecord', '~> 6.1.6'
   gem 'concurrent-ruby', '1.3.4'
+  # Required for Ruby 3.4+/4.0+ (removed from stdlib)
+  gem 'base64'
+  gem 'benchmark'
+  gem 'bigdecimal'
+  gem 'drb'
+  gem 'logger'
+  gem 'mutex_m'
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
@@ -33,6 +70,13 @@ end
 appraise 'activerecord-6.0' do
   gem 'activerecord', '~> 6.0.3'
   gem 'concurrent-ruby', '1.3.4'
+  # Required for Ruby 3.4+/4.0+ (removed from stdlib)
+  gem 'base64'
+  gem 'benchmark'
+  gem 'bigdecimal'
+  gem 'drb'
+  gem 'logger'
+  gem 'mutex_m'
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
@@ -55,43 +99,6 @@ appraise 'activerecord-5.1' do
 
   group :development do
     gem 'database_cleaner', '~> 1.99'
-    gem 'sqlite3', '~> 1.3.6'
-  end
-end
-
-appraise 'activerecord-5.0' do
-  gem 'activerecord', '~> 5.0.7'
-
-  group :development do
-    gem 'database_cleaner', '~> 1.99'
-    gem 'sqlite3', '~> 1.3.6'
-  end
-end
-
-appraise 'activerecord-4.2' do
-  gem 'activerecord', '~> 4.2.11'
-
-  group :development do
-    gem 'database_cleaner', '~> 1.99'
-    gem 'sqlite3', '~> 1.3.6'
-  end
-end
-
-appraise 'activerecord-4.1' do
-  gem 'activerecord', '~> 4.1.16'
-
-  group :development do
-    gem 'database_cleaner', '~> 1.99'
-    gem 'sqlite3', '~> 1.3.6'
-  end
-end
-
-appraise 'activerecord-4.0' do
-  gem 'activerecord', '~> 4.0.13'
-
-  group :development do
-    gem 'database_cleaner', '~> 1.99'
-    gem 'rake', '~> 11.1.1'
     gem 'sqlite3', '~> 1.3.6'
   end
 end
