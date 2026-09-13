@@ -1,3 +1,21 @@
+appraise 'activerecord-8.1' do
+  gem 'activerecord', '~> 8.1.0'
+
+  group :development do
+    gem 'database_cleaner', '~> 2.0'
+    gem 'sqlite3', '~> 2.1'
+  end
+end
+
+appraise 'activerecord-8.0' do
+  gem 'activerecord', '~> 8.0.0'
+
+  group :development do
+    gem 'database_cleaner', '~> 2.0'
+    gem 'sqlite3', '~> 2.1'
+  end
+end
+
 appraise 'activerecord-7.1' do
   gem 'activerecord', '~> 7.1.3'
 
