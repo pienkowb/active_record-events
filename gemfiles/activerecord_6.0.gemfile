@@ -11,7 +11,6 @@ group :development do
   gem "factory_girl", "~> 4.8.1"
   gem "generator_spec", "~> 0.9"
   gem "observer"
-  gem "rdoc"
   gem "rspec", "~> 3.9"
   gem "rubocop", "~> 1.50.2"
   gem "simplecov", "~> 0.16.1"
