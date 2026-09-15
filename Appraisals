@@ -3,6 +3,7 @@ appraise 'activerecord-8.1' do
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
+    gem 'rubocop', '~> 1.63'
     gem 'sqlite3', '~> 2.1'
   end
 end
@@ -12,6 +13,7 @@ appraise 'activerecord-8.0' do
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
+    gem 'rubocop', '~> 1.63'
     gem 'sqlite3', '~> 2.1'
   end
 end
@@ -33,6 +35,7 @@ appraise 'activerecord-7.0' do
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
+    gem 'rdoc'
     gem 'rubocop', '~> 1.63'
     gem 'sqlite3', '~> 1.4'
   end
@@ -44,6 +47,7 @@ appraise 'activerecord-6.1' do
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
+    gem 'rdoc'
     gem 'rubocop', '~> 1.50.2'
     gem 'sqlite3', '~> 1.4'
   end
@@ -55,6 +59,7 @@ appraise 'activerecord-6.0' do
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
+    gem 'rdoc'
     gem 'rubocop', '~> 1.50.2'
     gem 'sqlite3', '~> 1.4'
   end

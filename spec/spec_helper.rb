@@ -23,12 +23,14 @@ require File.expand_path('dummy/config/environment.rb', __dir__)
 
 # Monkey-patch Time to compare UTC values, ignoring timezone representation
 class Time
-  alias_method :original_eq, :==
+  alias original_eq ==
 
   def ==(other)
     return original_eq(other) unless other.is_a?(Time)
-    # Compare the UTC values while allowing microsecond precision loss from database storage
-    (self.utc.to_i == other.utc.to_i) && ((self.utc.usec / 1000) == (other.utc.usec / 1000))
+
+    # Compare at millisecond precision, as timestamps lose microseconds
+    # when stored in the database
+    to_i == other.to_i && usec / 1000 == other.usec / 1000
   end
 end
 

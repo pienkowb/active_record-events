@@ -90,6 +90,10 @@ jobs:
           - ruby: '3.2'
             gemfile: activerecord_4.0
           - ruby: '3.1'
+            gemfile: activerecord_8.1
+          - ruby: '3.1'
+            gemfile: activerecord_8.0
+          - ruby: '3.1'
             gemfile: activerecord_5.2
           - ruby: '3.1'
             gemfile: activerecord_5.1
