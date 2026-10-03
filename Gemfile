@@ -19,6 +19,7 @@ group :development do
   gem 'database_cleaner', '>= 1.99', '< 3'
   gem 'factory_girl', '~> 4.8.1'
   gem 'generator_spec', '~> 0.9'
+  gem 'observer'
   gem 'rspec', '~> 3.9'
   gem 'rubocop', '~> 0.50.0'
   gem 'simplecov', '~> 0.16.1'
