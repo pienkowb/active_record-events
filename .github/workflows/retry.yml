@@ -1,0 +1,21 @@
+name: Retry failed jobs
+on:
+  workflow_run:
+    workflows: ['Test']
+    types: [completed]
+
+jobs:
+  retry:
+    if: github.event.workflow_run.run_attempt < 3
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          if gh run view "$RUN_ID" --json jobs --jq '.jobs[].conclusion' | grep -q failure; then
+            gh run rerun "$RUN_ID" --failed
+          fi

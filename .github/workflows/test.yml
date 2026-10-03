@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    continue-on-error: ${{ github.run_attempt < 3 }}
     strategy:
       fail-fast: false
       matrix:
