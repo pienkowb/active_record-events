@@ -16,6 +16,7 @@ group :development do
   gem "sqlite3", "~> 1.4"
   gem "timecop", "~> 0.9"
   gem "zonebie", "~> 0.6"
+  gem "psych", "~> 4.0"
 end
 
 gemspec path: "../"

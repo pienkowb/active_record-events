@@ -5,6 +5,7 @@ appraise 'activerecord-7.1' do
     gem 'database_cleaner', '~> 2.0'
     gem 'rubocop', '~> 1.63'
     gem 'sqlite3', '~> 1.4'
+    gem 'psych', '~> 4.0'
   end
 end
 
