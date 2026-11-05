@@ -13,6 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
+          - '4.0'
+          - '3.4'
           - '3.3'
           - '3.2'
           - '3.1'
@@ -26,6 +28,9 @@ jobs:
           - '2.1'
           - '2.0'
         gemfile:
+          - activerecord_8.1
+          - activerecord_8.0
+          - activerecord_7.2
           - activerecord_7.1
           - activerecord_7.0
           - activerecord_6.1
@@ -37,6 +42,33 @@ jobs:
           - activerecord_4.1
           - activerecord_4.0
         exclude:
+          # Ruby 4.0 excludes (missing observer stdlib for Rails 5.x and earlier)
+          - ruby: '4.0'
+            gemfile: activerecord_5.2
+          - ruby: '4.0'
+            gemfile: activerecord_5.1
+          - ruby: '4.0'
+            gemfile: activerecord_5.0
+          - ruby: '4.0'
+            gemfile: activerecord_4.2
+          - ruby: '4.0'
+            gemfile: activerecord_4.1
+          - ruby: '4.0'
+            gemfile: activerecord_4.0
+          # Ruby 3.4 excludes (missing observer stdlib for Rails 5.x and earlier)
+          - ruby: '3.4'
+            gemfile: activerecord_5.2
+          - ruby: '3.4'
+            gemfile: activerecord_5.1
+          - ruby: '3.4'
+            gemfile: activerecord_5.0
+          - ruby: '3.4'
+            gemfile: activerecord_4.2
+          - ruby: '3.4'
+            gemfile: activerecord_4.1
+          - ruby: '3.4'
+            gemfile: activerecord_4.0
+          # Ruby 3.3 excludes (Rails 8.x requires Ruby >= 3.2)
           - ruby: '3.3'
             gemfile: activerecord_5.2
           - ruby: '3.3'
@@ -61,6 +93,11 @@ jobs:
             gemfile: activerecord_4.1
           - ruby: '3.2'
             gemfile: activerecord_4.0
+          # Ruby 3.1 excludes (Rails 8.x requires Ruby >= 3.2)
+          - ruby: '3.1'
+            gemfile: activerecord_8.1
+          - ruby: '3.1'
+            gemfile: activerecord_8.0
           - ruby: '3.1'
             gemfile: activerecord_5.2
           - ruby: '3.1'
@@ -73,6 +110,13 @@ jobs:
             gemfile: activerecord_4.1
           - ruby: '3.1'
             gemfile: activerecord_4.0
+          # Ruby 3.0 excludes (Rails 8.x requires Ruby >= 3.2, Rails 7.2 requires Ruby >= 3.1)
+          - ruby: '3.0'
+            gemfile: activerecord_8.1
+          - ruby: '3.0'
+            gemfile: activerecord_8.0
+          - ruby: '3.0'
+            gemfile: activerecord_7.2
           - ruby: '3.0'
             gemfile: activerecord_5.2
           - ruby: '3.0'
@@ -85,12 +129,26 @@ jobs:
             gemfile: activerecord_4.1
           - ruby: '3.0'
             gemfile: activerecord_4.0
+          # Ruby 2.7 excludes
+          - ruby: '2.7'
+            gemfile: activerecord_8.1
+          - ruby: '2.7'
+            gemfile: activerecord_8.0
+          - ruby: '2.7'
+            gemfile: activerecord_7.2
           - ruby: '2.7'
             gemfile: activerecord_4.2
           - ruby: '2.7'
             gemfile: activerecord_4.1
           - ruby: '2.7'
             gemfile: activerecord_4.0
+          # Ruby 2.6 excludes
+          - ruby: '2.6'
+            gemfile: activerecord_8.1
+          - ruby: '2.6'
+            gemfile: activerecord_8.0
+          - ruby: '2.6'
+            gemfile: activerecord_7.2
           - ruby: '2.6'
             gemfile: activerecord_7.1
           - ruby: '2.6'
@@ -99,6 +157,13 @@ jobs:
             gemfile: activerecord_4.1
           - ruby: '2.6'
             gemfile: activerecord_4.0
+          # Ruby 2.5 excludes
+          - ruby: '2.5'
+            gemfile: activerecord_8.1
+          - ruby: '2.5'
+            gemfile: activerecord_8.0
+          - ruby: '2.5'
+            gemfile: activerecord_7.2
           - ruby: '2.5'
             gemfile: activerecord_7.1
           - ruby: '2.5'
@@ -111,6 +176,13 @@ jobs:
             gemfile: activerecord_4.1
           - ruby: '2.5'
             gemfile: activerecord_4.0
+          # Ruby 2.4 excludes
+          - ruby: '2.4'
+            gemfile: activerecord_8.1
+          - ruby: '2.4'
+            gemfile: activerecord_8.0
+          - ruby: '2.4'
+            gemfile: activerecord_7.2
           - ruby: '2.4'
             gemfile: activerecord_7.1
           - ruby: '2.4'
@@ -123,6 +195,13 @@ jobs:
             gemfile: activerecord_4.1
           - ruby: '2.4'
             gemfile: activerecord_4.0
+          # Ruby 2.3 excludes
+          - ruby: '2.3'
+            gemfile: activerecord_8.1
+          - ruby: '2.3'
+            gemfile: activerecord_8.0
+          - ruby: '2.3'
+            gemfile: activerecord_7.2
           - ruby: '2.3'
             gemfile: activerecord_7.1
           - ruby: '2.3'
@@ -131,6 +210,13 @@ jobs:
             gemfile: activerecord_6.1
           - ruby: '2.3'
             gemfile: activerecord_6.0
+          # Ruby 2.2 excludes
+          - ruby: '2.2'
+            gemfile: activerecord_8.1
+          - ruby: '2.2'
+            gemfile: activerecord_8.0
+          - ruby: '2.2'
+            gemfile: activerecord_7.2
           - ruby: '2.2'
             gemfile: activerecord_7.1
           - ruby: '2.2'
@@ -139,6 +225,13 @@ jobs:
             gemfile: activerecord_6.1
           - ruby: '2.2'
             gemfile: activerecord_6.0
+          # Ruby 2.1 excludes
+          - ruby: '2.1'
+            gemfile: activerecord_8.1
+          - ruby: '2.1'
+            gemfile: activerecord_8.0
+          - ruby: '2.1'
+            gemfile: activerecord_7.2
           - ruby: '2.1'
             gemfile: activerecord_7.1
           - ruby: '2.1'
@@ -153,6 +246,13 @@ jobs:
             gemfile: activerecord_5.1
           - ruby: '2.1'
             gemfile: activerecord_5.0
+          # Ruby 2.0 excludes
+          - ruby: '2.0'
+            gemfile: activerecord_8.1
+          - ruby: '2.0'
+            gemfile: activerecord_8.0
+          - ruby: '2.0'
+            gemfile: activerecord_7.2
           - ruby: '2.0'
             gemfile: activerecord_7.1
           - ruby: '2.0'

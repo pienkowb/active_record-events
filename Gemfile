@@ -17,7 +17,7 @@ gemspec
 group :development do
   gem 'appraisal', '~> 2.2', '<= 2.4.1'
   gem 'database_cleaner', '>= 1.99', '< 3'
-  gem 'factory_girl', '~> 4.8.1'
+  gem 'factory_bot', '~> 6.2'
   gem 'generator_spec', '~> 0.9'
   gem 'rspec', '~> 3.9'
   gem 'rubocop', '~> 0.50.0'
