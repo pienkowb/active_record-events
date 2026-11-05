@@ -35,6 +35,7 @@ appraise 'activerecord-7.0' do
 
   group :development do
     gem 'database_cleaner', '~> 2.0'
+    # Required by the Rakefile; Active Record 7.1+ pulls it in through irb
     gem 'rdoc'
     gem 'rubocop', '~> 1.63'
     gem 'sqlite3', '~> 1.4'
