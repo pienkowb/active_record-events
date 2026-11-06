@@ -2,7 +2,8 @@ require 'spec_helper'
 
 RSpec.describe ActiveRecord::Events do
   around(:each) do |example|
-    Timecop.freeze { example.run }
+    # Drop sub-second precision, which databases may truncate
+    Timecop.freeze(Time.current.change(usec: 0)) { example.run }
   end
 
   let!(:task) { create(:task) }
